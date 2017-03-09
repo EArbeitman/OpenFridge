@@ -1,0 +1,20 @@
+body {
+	/* max-width: 900px; */
+	margin: 0px auto;
+	display: flex;
+	min-height: 100vh;	
+	box-sizing: border-box;
+}
+
+
+.setup {
+	display: none;
+}
+
+.myColumn {
+	width: 25%;
+}
+
+.masterSearch {
+	display: inline;
+}
