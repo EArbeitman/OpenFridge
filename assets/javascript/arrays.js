@@ -20,9 +20,16 @@ var categoryList = ["#dairy", "#meat", "#vegetables", "#fruit", "#spices", "#fis
 
 for (var i = 0; i < masterList.length; i++) {
 	var master = masterList[i];
+	master.sort();
+	var row = $("<div class='row'>");
 	for (var j = 0; j < master.length; j++) {
-		var ckbx = $('<label class="checkbox-inline"><input type="checkbox" data-toggle="toggle" value="' + master[j] + '">' + '__' + master[j] +'__' + '</label>');
-		$(categoryList[i]).append(ckbx);
+		if (j % 3 == 0 && row) {
+			$(categoryList[i]).append(row);
+			row = $("<div class='row'>").css("font-size", 0px);
+		}
+		var ckbx = $('<label class="col-xs-4 checkbox-inline"><input type="checkbox" data-toggle="toggle" value="' + master[j] + '">' + '__' + master[j] +'__' + '</label>');
+		row.append(ckbx);
 	}
+	$(categoryList[i]).append(row);
 
 }
