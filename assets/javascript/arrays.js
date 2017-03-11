@@ -29,7 +29,7 @@ for (var i = 0; i < masterList.length; i++) {
 			$(categoryList[i]).append(row);
 			row = $("<div class='row'>");
 		}
-		var ingredientBtn = $('<button class="col-md-3 btn btn-primary ingredientBtn" data-selected="false" data-ingredient="' + master[j] + '">' + master[j] + '</button>');
+		var ingredientBtn = $('<div class="col-md-3 btn btn-primary ingredientBtn" data-selected="false" data-ingredient="' + master[j] + '">' + master[j] + '</div>');
 		row.append(ingredientBtn);
 
 	}

@@ -8,7 +8,7 @@ body {
 
 
 .setup {
-	display: none;
+	display: inline;
 }
 
 .myColumn {

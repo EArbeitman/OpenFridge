@@ -1,4 +1,4 @@
-$(document).ready( function () {
+// $(document).ready( function () {
 
 
 
@@ -69,4 +69,4 @@ function edamamApiQuery(ingredientsArray, dietOptionsIndex, healthOptionsIndex){
 
 
 
-});
+// });

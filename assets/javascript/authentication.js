@@ -1,12 +1,17 @@
 // Initialize Firebase
 var config = {
-	apiKey: "AIzaSyDx42pzuIRiVLXxoSLiHw0ZVdK0vltH3ns",
-	authDomain: "openfridge-ce80f.firebaseapp.com",
-	databaseURL: "https://openfridge-ce80f.firebaseio.com",
-	storageBucket: "openfridge-ce80f.appspot.com",
-	messagingSenderId: "304705323614"
+	apiKey: "AIzaSyA1gNR8KEZkiS_AgMt-zkE5kksII0q8hjM",
+    authDomain: "projectonetest-8db33.firebaseapp.com",
+    databaseURL: "https://projectonetest-8db33.firebaseio.com",
+    storageBucket: "projectonetest-8db33.appspot.com",
+    messagingSenderId: "233742650790"
 };
 firebase.initializeApp(config);
+var database = firebase.database();
+var databaseRef = firebase.auth();
+var username
+
+
 
 var txtEmail = $("#email");
 var password = $("#password");
@@ -18,7 +23,7 @@ var btnLogout = $("#logout");
 //Add login event
 btnLogin.on("click", e =>{
 	//Get email and password
-	var username = userName.val();
+	 username = userName.val();
 	var email = txtEmail.val();
 	var pass = password.val();
 	const auth = firebase.auth();
@@ -35,7 +40,7 @@ btnLogin.on("click", e =>{
 btnSignup.on("click", e =>{
 
 	//Validate for true email address
-	var username = userName.val();
+	 username = userName.val();
 	var email = txtEmail.val();
 	var pass = password.val();
 	const auth = firebase.auth();
@@ -52,7 +57,14 @@ btnSignup.on("click", e =>{
 firebase.auth().onAuthStateChanged(firebaseUser => {
 	// takes in callbanck as arg
 	if(firebaseUser){
+		var userId = firebase.auth().currentUser.uid;
 		console.log(firebaseUser);
+		console.log(userId);
+		database.ref().child("users/"+userId).set({
+			username : username,
+			id : userId,
+			fridge: {}
+		})
 	}
 	else{
 		console.log("not logged in"); 

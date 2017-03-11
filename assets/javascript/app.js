@@ -1,8 +1,9 @@
 
 
 
-$('.ingredientBtn').on('click', function (evnet) {
-	event.preventDefault();
+$('.ingredientBtn').on('click', function () {
+	
+	console.log("Clicked");
 	var ingredient = $(this).attr("data-ingredient");
 	var isSelected = $(this).attr("data-selected");
 	//check if ingredient is selected
