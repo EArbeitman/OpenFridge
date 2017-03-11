@@ -20,8 +20,9 @@ var categoryList = ["#dairy", "#meat", "#vegetables", "#fruit", "#spices", "#fis
 
 for (var i = 0; i < masterList.length; i++) {
 	var master = masterList[i];
+	master.sort();
 	for (var j = 0; j < master.length; j++) {
-		var ckbx = $('<label class="checkbox-inline"><input type="checkbox" data-toggle="toggle" value="' + master[j] + '">' + '__' + master[j] +'__' + '</label>');
+		var ckbx = $('<label class="checkbox-inline"><input type="checkbox" id="boxFormat" data-toggle="toggle" value="' + master[j] + '">' + master[j] + '</label>');
 		$(categoryList[i]).append(ckbx);
 	}
 

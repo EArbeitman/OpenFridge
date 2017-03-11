@@ -18,3 +18,8 @@ body {
 .masterSearch {
 	display: inline;
 }
+
+
+label.checkbox-inline {
+	background-color: lightgray;
+}
