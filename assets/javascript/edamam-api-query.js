@@ -48,21 +48,23 @@ function compileUrl(ingredientsArray, dietOptionsIndex, healthOptionsIndex ) {
 
 
 // Query the API and stores the first 10 result's labels, images and links 
-$.ajax({
-	url: compileUrl(),
-	method: "GET"
-}).done( function (response) {
-	searchResultsLabels = [];
-	searchResultsImages = [];
-	searchResultsUrls = [];
-	for (i=0; i<10; i++) {
-		searchResultsLabels.push(response.hits[i].recipe.label);
-		searchResultsImages.push(response.hits[i].recipe.image);
-		searchResultsUrls.push(response.hits[i].recipe.url);
-	};
-});
+function edamamApiQuery(ingredientsArray, dietOptionsIndex, healthOptionsIndex){
 
+	$.ajax({
+		url: compileUrl(ingredientsArray, dietOptionsIndex, healthOptionsIndex),
+		method: "GET"
+	}).done( function (response) {
+		searchResultsLabels = [];
+		searchResultsImages = [];
+		searchResultsUrls = [];
+		for (i=0; i<10; i++) {
+			searchResultsLabels.push(response.hits[i].recipe.label);
+			searchResultsImages.push(response.hits[i].recipe.image);
+			searchResultsUrls.push(response.hits[i].recipe.url);
+		};
+	});
 
+};
 
 
 
