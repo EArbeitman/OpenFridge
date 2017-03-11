@@ -19,7 +19,7 @@ body {
 	display: inline;
 }
 
-
-label.checkbox-inline {
-	background-color: lightgray;
+.btn {
+	margin: 5px;
+	width:23%;
 }
