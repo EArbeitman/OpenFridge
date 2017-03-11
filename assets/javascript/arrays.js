@@ -29,8 +29,8 @@ for (var i = 0; i < masterList.length; i++) {
 			$(categoryList[i]).append(row);
 			row = $("<div class='row'>");
 		}
-		var ckbx = $('<button class="col-md-3 btn btn-primary"><type="btn" data-selected="false" data-ingredient="' + master[j] + '">' + master[j] + '</button>');
-		row.append(ckbx);
+		var ingredientBtn = $('<button class="col-md-3 btn btn-primary ingredientBtn" data-selected="false" data-ingredient="' + master[j] + '">' + master[j] + '</button>');
+		row.append(ingredientBtn);
 
 	}
 	$(categoryList[i]).append(row);

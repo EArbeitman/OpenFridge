@@ -1,7 +1,19 @@
 
 
-$('#ingrSelect').on('change', addToFridge);
 
+$('.ingredientBtn').on('click', function (evnet) {
+	event.preventDefault();
+	var ingredient = $(this).attr("data-ingredient");
+	var isSelected = $(this).attr("data-selected");
+	//check if ingredient is selected
+	if ( isSelected === "false") {
+		$(this).attr("data-selected", "true");
+	} else  if ( isSelected === "true") {
+		$(this).attr("data-selected", "false");
+	} else {
+		console.log("error in the ingredient button function");
+	}
+});
 
 function addToFridge(){
 	//alert("test");
