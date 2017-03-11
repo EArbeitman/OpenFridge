@@ -24,6 +24,7 @@ for (var i = 0; i < masterList.length; i++) {
 
 	var row = $("<div class='row'>");
 	for (var j = 0; j < master.length; j++) {
+<<<<<<< HEAD
 		if (j % 4 == 0 && row) {
 			$(categoryList[i]).append(row);
 			row = $("<div class='row'>");
@@ -31,6 +32,10 @@ for (var i = 0; i < masterList.length; i++) {
 		var ckbx = $('<button class="col-md-3 btn btn-primary"><type="btn" data-selected="false" data-ingredient="' + master[j] + '">' + master[j] + '</button>');
 		row.append(ckbx);
 
+=======
+		var ckbx = $('<button class="btn btn-primary"><type="btn" id="boxFormat" data-toggle="toggle" value="' + master[j] + '">' + master[j] + '</button>');
+		$(categoryList[i]).append(ckbx);
+>>>>>>> d78dd8c7def249b0bc021d04377470a37483b53a
 	}
 	$(categoryList[i]).append(row);
 
