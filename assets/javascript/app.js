@@ -1,6 +1,6 @@
 
 
-$('input[type="checkbox"]').on('change', addToFridge);
+$('#ingrSelect').on('change', addToFridge);
 
 
 function addToFridge(){

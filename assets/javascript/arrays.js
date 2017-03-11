@@ -22,7 +22,7 @@ for (var i = 0; i < masterList.length; i++) {
 	var master = masterList[i];
 	master.sort();
 	for (var j = 0; j < master.length; j++) {
-		var ckbx = $('<label class="checkbox-inline"><input type="checkbox" id="boxFormat" data-toggle="toggle" value="' + master[j] + '">' + master[j] + '</label>');
+		var ckbx = $('<button class="btn btn-primary"><type="btn" id="boxFormat" data-toggle="toggle" value="' + master[j] + '">' + master[j] + '</button>');
 		$(categoryList[i]).append(ckbx);
 	}
 
