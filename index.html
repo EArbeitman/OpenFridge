@@ -2,15 +2,15 @@
 <html>
 <head>
 	<meta charset="utf-8">
-  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  	<title>OpenFridge Recipe search</title>
+	<title>OpenFridge Recipe search</title>
 
 	<link rel="icon" href="assets/images/tomato.png">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
   	<!--Firebase reference -->
   	<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
@@ -18,176 +18,270 @@
   	
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://use.fontawesome.com/94d0e78a48.js"></script>
+  	<script src="https://use.fontawesome.com/94d0e78a48.js"></script>
 
 </head>
 <body>
 <div class="container">
-    <div class="jumbotron">
-        <h1><span class="fa fa-grocery-o"><img src="assets/images/refrigerator-icon.jpg"></span>  OpenFridge Recipe search</h1> 
-        <p>Open your fridge and tell us what you have. We will show you some delicious recipes you can make now.</p> 
+  <div class="jumbotron">
+    <h1><span class="fa fa-grocery-o"><img src="assets/images/refrigerator-icon.jpg"></span>  OpenFridge Recipe search</h1> 
+    <p>Open your fridge and tell us what you have. We will show you some delicious recipes you can make now.</p> 
+  </div>
+
+	<div class="row setup">
+	  <div class="col-sm-0 col-md-1 col-lg-2">
+	  </div>
+	  <div class="col-sm-12 col-md-10 col-lg-8 text-center">
+			<div class="input-group input-group-lg">
+	      <span class="input-group-addon glyphicon glyphicon-user" id="basic-addon1"></span>
+	        <input id="name" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+	    </div>
+	    <div class="input-group input-group-lg">
+	      <span class="input-group-addon glyphicon glyphicon-envelope" id="basic-addon1"></span>
+	        <input id="email" type="email" class="form-control" placeholder="John.Smith@gmail.com" email="John.Smith@gmail.com" aria-describedby="basic-addon1">
+	    </div>
+	    <div class="input-group input-group-lg">
+	      <span class="input-group-addon" id="basic-addon1"><i class="fa fa-key" aria-hidden="true"></i></span>
+	        <input id="password" type="password" class="form-control" placeholder="Password" password="#" aria-describedby="basic-addon1">
+	    </div>
+
+	    <div>
+	    <br><!-- buttons for signin or signup-->
+	      <button id="login" class="btn btn-lg btn-warning login" type="submit">LOGIN</button>
+	      <button id="signup" class="btn btn-lg btn-warning login" type="submit">SIGNUP</button>
+	      <button id="logout" class="btn btn-lg btn-warning logout" type="submit">LOGOUT</button>
+	    </div>
+	  </div>
+    <div class="col-sm-0 col-md-1 col-lg-2">
     </div>
 
-		<div class="row setup">
-	        <div class="col-sm-0 col-md-1 col-lg-2">
-	        </div>
-	        <div class="col-sm-12 col-md-10 col-lg-8 text-center">
-				<div class="input-group input-group-lg">
-	                <span class="input-group-addon glyphicon glyphicon-user" id="basic-addon1"></span>
-	                <input id="name" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
-	            </div>
-	            <div class="input-group input-group-lg">
-	              <span class="input-group-addon glyphicon glyphicon-envelope" id="basic-addon1"></span>
-	              <input id="email" type="email" class="form-control" placeholder="John.Smith@gmail.com" email="John.Smith@gmail.com" aria-describedby="basic-addon1">
-	            </div>
-	            <div class="input-group input-group-lg">
-	              <span class="input-group-addon" id="basic-addon1"><i class="fa fa-key" aria-hidden="true"></i></span>
-	              <input id="password" type="password" class="form-control" placeholder="Password" password="#" aria-describedby="basic-addon1">
-	            </div>
-
-	            <div>
-	              <br><!-- buttons for signin or signup-->
-	              <button id="login" class="btn btn-lg btn-warning login" type="submit">LOGIN</button>
-	              <button id="signup" class="btn btn-lg btn-warning login" type="submit">SIGNUP</button>
-	              <button id="logout" class="btn btn-lg btn-warning logout" type="submit">LOGOUT</button>
-	            </div>
-	        </div>
-        <div class="col-sm-0 col-md-1 col-lg-2">
-        </div>
-
-    </div><!--end signin section-->
+  </div><!--end signin section-->
 
 <div class="row masterSearch">
-    <div class="col-lg-8 panel panel-primary">
-      <div class="panel-heading"><span class="glyphicon glyphicon-search"></span>  Select what you currently have in your fridge</div>
-        <form class="panel-body">
-
-
-<!-- Dairy list -->
-          	<div class="panel-heading">
-          		<h4 class="panel-title">
-          			<a data-toggle="collapse" href="#dairy">Dairy +</a>
-      			</h4>
-      		</div>
-      		<div id="dairy" class="panel-collapse collapse">
-			</div>
-<!-- Meat list -->
-			<div class="panel-heading">
-          		<h4 class="panel-title">
-          			<a data-toggle="collapse" href="#meat">Meat +</a>
-      			</h4>
-      		</div>
-      		<div id="meat" class="panel-collapse collapse">
-	          	
-			</div>
-<!-- Vegetables list -->
-			<div class="panel-heading">
-          		<h4 class="panel-title">
-          			<a data-toggle="collapse" href="#vegetables">Vegetables +</a>
-      			</h4>
-      		</div>
-      		<div id="vegetables" class="panel-collapse collapse">
-
-      		</div>
-<!-- fruit list -->
-			<div class="panel-heading">
-          		<h4 class="panel-title">
-          			<a data-toggle="collapse" href="#fruit">Fruit +</a>
-      			</h4>
-      		</div>
-      		<div id="fruit" class="panel-collapse collapse">
-      		</div>
-<!-- spices list -->
-			<div class="panel-heading">
-          		<h4 class="panel-title">
-          			<a data-toggle="collapse" href="#spices">Spices +</a>
-      			</h4>
-      		</div>
-      		<div id="spices" class="panel-collapse collapse">
-      		</div>
-<!-- baking list -->
-			<div class="panel-heading">
-          		<h4 class="panel-title">
-          			<a data-toggle="collapse" href="#baking">Baking +</a>
-      			</h4>
-      		</div>
-      		<div id="baking" class="panel-collapse collapse">
-      		</div>
-<!-- oil list -->
-			<div class="panel-heading">
-          		<h4 class="panel-title">
-          			<a data-toggle="collapse" href="#oil">Oil +</a>
-      			</h4>
-      		</div>
-      		<div id="oil" class="panel-collapse collapse">
-      		</div>
-<!-- seafood list -->
-			<div class="panel-heading">
-          		<h4 class="panel-title">
-          			<a data-toggle="collapse" href="#seafood">Seafood +</a>
-      			</h4>
-      		</div>
-      		<div id="seafood" class="panel-collapse collapse">
-      		</div>
-<!-- sweetner list -->
-			<div class="panel-heading">
-          		<h4 class="panel-title">
-          			<a data-toggle="collapse" href="#sweetner">Sweetner +</a>
-      			</h4>
-      		</div>
-      		<div id="sweetner" class="panel-collapse collapse">
-      		</div>
-<!-- nuts list -->
-			<div class="panel-heading">
-          		<h4 class="panel-title">
-          			<a data-toggle="collapse" href="#nuts">Nuts +</a>
-      			</h4>
-      		</div>
-      		<div id="nuts" class="panel-collapse collapse">
-      		</div>
-<!-- condiments list -->
-			<div class="panel-heading">
-          		<h4 class="panel-title">
-          			<a data-toggle="collapse" href="#condiments">Condiments +</a>
-      			</h4>
-      		</div>
-      		<div id="condiments" class="panel-collapse collapse">
-      		</div>
-<!-- desert list -->
-			<div class="panel-heading">
-          		<h4 class="panel-title">
-          			<a data-toggle="collapse" href="#desert">Desert +</a>
-      			</h4>
-      		</div>
-      		<div id="desert" class="panel-collapse collapse">
-      		</div>
-<!-- beverage list -->
-			<div class="panel-heading">
-          		<h4 class="panel-title">
-          			<a data-toggle="collapse" href="#beverage">Beverage +</a>
-      			</h4>
-      		</div>
-      		<div id="beverage" class="panel-collapse collapse">
-      		</div>
-<!-- legumes list -->
-			<div class="panel-heading">
-          		<h4 class="panel-title">
-          			<a data-toggle="collapse" href="#legumes">Legumes +</a>
-      			</h4>
-      		</div>
-      		<div id="legumes" class="panel-collapse collapse">
-
-			</div>
-	    </form>
+  <div class="col-lg-8 panel panel-primary">
+    <div class="panel-heading"><span class="glyphicon glyphicon-search"></span>  Select what you currently have in your fridge
     </div>
-    <div class="col-lg-4 panel panel-primary">
-      	<div class="panel-heading"></span>Fridge List</span></div>
-        	<form id = "myFridge" class="panel-body">
-            
-        	</form>
+      
+<!-- Ingredient list panel -->
+    <form class="panel-body">
+
+  <!-- Dairy list -->
+     	<div class="panel-heading">
+     		<h4 class="panel-title">
+     			<a data-toggle="collapse" href="#dairy">Dairy +</a>
+      	</h4>
+   		</div>
+        <div id="dairy" class="panel-collapse collapse">
+
+  		  </div>
+
+  <!-- Meat list -->
+  		<div class="panel-heading">
+        <h4 class="panel-title">
+        	<a data-toggle="collapse" href="#meat">Meat +</a>
+        </h4>
+      </div>
+      	<div id="meat" class="panel-collapse collapse">
+  	          	
+  			</div>
+
+  <!-- Vegetables list -->
+  		<div class="panel-heading">
+        <h4 class="panel-title">
+        	<a data-toggle="collapse" href="#vegetables">Vegetables +</a>
+        </h4>
+      </div>
+      	<div id="vegetables" class="panel-collapse collapse">
+
+      	</div>
+  <!-- fruit list -->
+  		<div class="panel-heading">
+      	<h4 class="panel-title">
+      		<a data-toggle="collapse" href="#fruit">Fruit +</a>
+      	</h4>
+      </div>
+      	<div id="fruit" class="panel-collapse collapse">
+
+      	</div>
+
+  <!-- spices list -->
+    	<div class="panel-heading">
+     		<h4 class="panel-title">
+     			<a data-toggle="collapse" href="#spices">Spices +</a>
+    		</h4>
     	</div>
-	</div>
+      	<div id="spices" class="panel-collapse collapse">
+
+        </div>
+
+  <!-- baking list -->
+  		<div class="panel-heading">
+     		<h4 class="panel-title">
+     			<a data-toggle="collapse" href="#baking">Baking +</a>
+   			</h4>
+   		</div>
+     		<div id="baking" class="panel-collapse collapse">
+
+     		</div>
+
+  <!-- oil list -->
+  		<div class="panel-heading">
+     		<h4 class="panel-title">
+     			<a data-toggle="collapse" href="#oil">Oil +</a>
+  			</h4>
+  		</div>
+    		<div id="oil" class="panel-collapse collapse">
+
+     		</div>
+
+  <!-- seafood list -->
+    	<div class="panel-heading">
+     		<h4 class="panel-title">
+     			<a data-toggle="collapse" href="#seafood">Seafood +</a>
+  			</h4>
+   		</div>
+     		<div id="seafood" class="panel-collapse collapse">
+
+     		</div>
+
+  <!-- sweetner list -->
+    	<div class="panel-heading">
+    		<h4 class="panel-title">
+     			<a data-toggle="collapse" href="#sweetner">Sweetner +</a>
+    		</h4>
+    	</div>
+     		<div id="sweetner" class="panel-collapse collapse">
+
+     		</div>
+
+  <!-- nuts list -->
+  		<div class="panel-heading">
+     		<h4 class="panel-title">
+    			<a data-toggle="collapse" href="#nuts">Nuts +</a>
+  			</h4>
+   		</div>
+     		<div id="nuts" class="panel-collapse collapse">
+
+        </div>
+
+  <!-- condiments list -->
+  		<div class="panel-heading">
+     		<h4 class="panel-title">
+     			<a data-toggle="collapse" href="#condiments">Condiments +</a>
+   			</h4>
+   		</div>
+     		<div id="condiments" class="panel-collapse collapse">
+
+    		</div>
+
+  <!-- desert list -->
+  		<div class="panel-heading">
+     		<h4 class="panel-title">
+     			<a data-toggle="collapse" href="#desert">Desert +</a>
+   			</h4>
+   		</div>
+     		<div id="desert" class="panel-collapse collapse">
+
+     		</div>
+
+  <!-- beverage list -->
+  		<div class="panel-heading">
+     		<h4 class="panel-title">
+     			<a data-toggle="collapse" href="#beverage">Beverage +</a>
+   			</h4>
+   		</div>
+     		<div id="beverage" class="panel-collapse collapse">
+
+     		</div>
+
+  <!-- legumes list -->
+  		<div class="panel-heading">
+     		<h4 class="panel-title">
+     			<a data-toggle="collapse" href="#legumes">Legumes +</a>
+  			</h4>
+   		</div>
+     		<div id="legumes" class="panel-collapse collapse">
+
+  			</div>
+    </form>
+  </div>
+
+<!-- Search Results section -->
+  <div class="row masterSearch">
+    <div class="col-lg-8 panel panel-primary">
+      <div class="panel-heading"></span>  Recipe Results
+      </div>
+      <form class="panel-body slickSlider" id="resultsList">
+        <!-- <div class="slickSlider" id="resultsList"> -->
+        <div class="wrapper">
+          <div class="thumbnail">
+            <img src="https://www.edamam.com/web-img/12c/12c452ce06b3e9d80e93409f91a998fb.jpg" alt="..." href="http://leitesculinaria.com/78560/recipes-mac-and-cheese-with-carrots.html" />
+
+              <div class="caption post-content">
+
+                    <!-- <h3>Cook the Book: Carroty Mac and Cheese</h3> -->
+                    <a href="http://leitesculinaria.com/78560/recipes-mac-and-cheese-with-carrots.html"><p>Cook the Book: Carroty Mac and Cheese</p></a>
+              </div>
+          </div>
+        </div>
+
+
+          <div class="thumbnail">
+            <img src="https://www.edamam.com/web-img/12c/12c452ce06b3e9d80e93409f91a998fb.jpg" alt="..." href="http://leitesculinaria.com/78560/recipes-mac-and-cheese-with-carrots.html" />
+            <div class="wrapper">
+              <div class="caption post-content">
+
+                    <!-- <h3>Cook the Book: Carroty Mac and Cheese</h3> -->
+                    <a href="http://leitesculinaria.com/78560/recipes-mac-and-cheese-with-carrots.html"><p>Cook the Book: Carroty Mac and Cheese</p></a>
+              </div>
+            </div>
+          </div>
+          <div class="thumbnail">
+            <img src="https://www.edamam.com/web-img/12c/12c452ce06b3e9d80e93409f91a998fb.jpg" alt="..." href="http://leitesculinaria.com/78560/recipes-mac-and-cheese-with-carrots.html" />
+            <div class="wrapper">
+              <div class="caption post-content">
+
+                    <!-- <h3>Cook the Book: Carroty Mac and Cheese</h3> -->
+                    <a href="http://leitesculinaria.com/78560/recipes-mac-and-cheese-with-carrots.html"><p>Cook the Book: Carroty Mac and Cheese</p></a>
+              </div>
+            </div>
+          </div>
+          <div class="thumbnail">
+            <img src="https://www.edamam.com/web-img/12c/12c452ce06b3e9d80e93409f91a998fb.jpg" alt="..." href="http://leitesculinaria.com/78560/recipes-mac-and-cheese-with-carrots.html" />
+            <div class="wrapper">
+              <div class="caption post-content">
+
+                    <!-- <h3>Cook the Book: Carroty Mac and Cheese</h3> -->
+                    <a href="http://leitesculinaria.com/78560/recipes-mac-and-cheese-with-carrots.html"><p>Cook the Book: Carroty Mac and Cheese</p></a>
+              </div>
+            </div>
+          </div>
+          <div class="thumbnail">
+            <img src="https://www.edamam.com/web-img/12c/12c452ce06b3e9d80e93409f91a998fb.jpg" alt="..." href="http://leitesculinaria.com/78560/recipes-mac-and-cheese-with-carrots.html" />
+            <div class="wrapper">
+              <div class="caption post-content">
+
+                    <!-- <h3>Cook the Book: Carroty Mac and Cheese</h3> -->
+                    <a href="http://leitesculinaria.com/78560/recipes-mac-and-cheese-with-carrots.html"><p>Cook the Book: Carroty Mac and Cheese</p></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+<!-- Fridge List Panel -->
+  <div class="col-lg-4 panel panel-primary">
+  	<div class="panel-heading"></span>Fridge List</span>
+    </div>
+     	<form id = "myFridge" class="panel-body">
+            
+    	</form>
+  </div>
 </div>
+</div>
+
 </body>
 <script type="text/javascript" src = "assets/javascript/app.js"></script>
 
