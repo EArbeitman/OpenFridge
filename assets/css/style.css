@@ -4,6 +4,10 @@ body {
 	display: flex;
 	min-height: 100vh;	
 	box-sizing: border-box;
+	background: url("../images/background1.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
 }
 
 
@@ -18,11 +22,14 @@ body {
 }
 
 .masterSearch {
-	display: none;
+	display: block;
+	background: transparent;
+	color: white;
 }
 
 .searchResults {
 	display: inline;
+	background: transparent;
 }
 
 .btn {
@@ -43,7 +50,13 @@ body {
 
     
 }
-
+a {
+	background: green;
+	padding: 5px;
+}
+a:focus, a:hover {
+	text-decoration: none;
+}
 /* .thumbnail {
     margin:0 auto;
     text-align:center;
