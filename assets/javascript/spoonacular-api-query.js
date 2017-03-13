@@ -3,52 +3,41 @@ $(document).ready(function (){
 
 
 
-//https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients
 
 
-//'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=5&ranking=1' \
+const spoonTriviaEndPoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/trivia/random";
+const spoonJokeEndPoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/jokes/random"
+const mashapeKey = "bxXFwnl1pJmshzspDDYGy3lvzL6sp1mO26njsn6pzoWcDjvhGD";
 
 
-// $.ajax({
-//     url: 'YourRestEndPoint',
-//     headers: {
-//         'Authorization':'Basic xxxxxxxxxxxxx',
-//         'X_CSRF_TOKEN':'xxxxxxxxxxxxxxxxxxxx',
-//         'Content-Type':'application/json'
-//     },
-//     method: 'POST',
-//     dataType: 'json',
-//     data: YourData,
-//     success: function(data){
-//       console.log('succes: '+data);
-//     }
-//   });
 
 
-// Gets the Id number and the images for the recipes
-$.ajax({
-	url: "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=5&ranking=1",
-	method: "GET",
-	headers: {
-		"X-Mashape-Key": "bxXFwnl1pJmshzspDDYGy3lvzL6sp1mO26njsn6pzoWcDjvhGD",
-		"Accept": "application/json"
+
+
+
+// Gets a random food related joke or trivia quote.
+function getSpoonQuote(){
+	var randomNumber = Math.floor(Math.random()*2);
+	var jokeOrTrivia
+	if (randomNumber === 0){
+		jokeOrTrivia = spoonJokeEndPoint;
+	} else {
+		jokeOrTrivia = spoonTriviaEndPoint;
 	}
-}).done(function (response){
-	console.log("success", response);
-});
+	$.ajax({
+		url: jokeOrTrivia,
+		method: "GET",
+		headers: {
+			"X-Mashape-Key": mashapeKey,
+			"Accept": "application/json"
+		}
+	}).done(function (response){
+		console.log("success, spoonacular api queried.");
+		var text = response.text;
+		console.log("text ", text);
+	});
+};
 
-
-// Get the recipe Url
-$.ajax({
-	url: "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/479101/information?includeNutrition=false",
-	method: "GET",
-	headers: {
-		"X-Mashape-Key": "bxXFwnl1pJmshzspDDYGy3lvzL6sp1mO26njsn6pzoWcDjvhGD",
-		"Accept": "application/json"
-	}
-}).done(function (response){
-	console.log("success", JSON.stringify(response));
-});
 
 
 
