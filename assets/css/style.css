@@ -8,7 +8,9 @@ body {
 
 
 .setup {
-	display: inline;
+	display: none;
+}
+
 }
 
 .myColumn {
@@ -16,6 +18,10 @@ body {
 }
 
 .masterSearch {
+	display: none;
+}
+
+.searchResults {
 	display: inline;
 }
 
@@ -24,6 +30,8 @@ body {
 	width:23%;
 
 }
+
+
 .post-content {
     background: none repeat scroll 0 0 #FFffff;
     opacity: 0.5;
@@ -31,15 +39,15 @@ body {
     margin-top: -54px;
     text-align:center
     position: relative;
-    width:40%;
+    width:90%;
 
     
 }
 
-.thumbnail {
+/* .thumbnail {
     margin:0 auto;
     text-align:center;
-}
+} */
 
 .wrapper {
     text-align:center;
