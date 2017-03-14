@@ -15,7 +15,7 @@ const healthOptions = ["none", "vegan", "vegetarian", "alcohol-free", "peanut-fr
 
 
 // Variables to configure search
-var ingredientsArray = [];
+var ingredientsArray = ["chicken"];
 var dietOptionsIndex = 0;
 var healthOptionsIndex = 0;
 

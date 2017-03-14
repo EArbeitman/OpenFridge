@@ -33,26 +33,33 @@ body {
 }
 
 .btn {
-	margin: 5px;
+	margin: 2vw;
 	width:23%;
 
 }
-
-
-.post-content {
-    background: none repeat scroll 0 0 #FFffff;
+p {
+	background: #FFffff;
     opacity: 0.8;
-    margin: 0 auto;
-    margin-top: -54px;
-    text-align:center
-    position: relative;
-    width:90%;
-
+    font-weight: 600;
+    font-size: 1.4vw;
     
 }
-a {
-	background: green;
+
+.post-content {
+    /*background: none;
+    /*opacity: 0.8;*/*/
+    margin: 0 auto;
+    text-align:center;
+    position: relative;
+    top: -7vw;
+    width:95%;   
+}
+
+h4 > a {
+	background: #486aab;
+	opacity: 0.9;
 	padding: 5px;
+	font-size: 20px;
 }
 a:focus, a:hover {
 	text-decoration: none;
@@ -64,4 +71,30 @@ a:focus, a:hover {
 
 .wrapper {
     text-align:center;
+}
+div.thumbnail {
+	margin: auto;
+	max-height: 23vw;
+	max-width: 31vw;
+	background: none;
+	border: none;
+	overflow: hidden;
+}
+img {
+	margin: auto;
+	max-height: 23vw;
+	max-width: 31vw;
+	overflow: hidden;
+	
+}
+.panel-heading {
+	font-size: 2.5vw;
+	max-width: 30vw;
+}
+
+.fridgeList {
+	padding: 2vw;
+}
+.fridgePanel {
+	background:none;
 }
