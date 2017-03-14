@@ -8,6 +8,8 @@ body {
 	background: url("../images/background1.jpg");
 	background-position: center;
 	background-size: cover;
+	font-family: 'Permanent Marker', cursive;
+	letter-spacing: 0.5vw;
 }
 
 
@@ -20,24 +22,40 @@ body {
 .myColumn {
 	width: 25%;
 }
+.panel-heading {
+	font-size: 2.5vw;
+	max-width: 95vw;
+	opacity: 0.9;
+}
 
 .searchResults, .masterSearch {
 	display: block;
-	background: transparent;
+	background: #f3f2f1;
 	color: white;
-	max-width: 96vw;
+	opacity: 0.9;
+	border-radius: 10px;
+}
+.searchResults {
+	display: none;
+}
+.masterSearch {
+	display: block;
 }
 
 .btn {
-	margin: .5vw;
-	width:23%;
+	margin: 0.5vw;
+	width: 23%;
 
 }
 p {
-	background: #FFffff;
+	background: #f3f2f1;
     opacity: 0.8;
+    font-family: 'Permanent Marker', cursive;
+    letter-spacing: 0.3vw;
     font-weight: 600;
     font-size: 1.4vw;
+    border-radius: 10px;
+    line-height: 5vh;
     
 }
 
@@ -71,29 +89,50 @@ a:focus, a:hover {
 div.thumbnail {
 	margin: auto;
 	max-height: 23vw;
-	max-width: 31vw;
+	max-width: 29vw;
 	background: none;
 	border: none;
 	overflow: hidden;
+	border-radius: 10px;
 }
 img {
 	margin: auto;
 	max-height: 23vw;
-	max-width: 31vw;
+	max-width: 29vw;
 	overflow: hidden;
+	opacity: 1.0;
+	border-radius: 10px;
 	
-}
-.panel-heading {
-	font-size: 2.5vw;
-	max-width: 95vw;
 }
 
 .fridgeList {
 	padding: 2vw;
+	opacity: 0.9;
 }
 .fridgePanel {
-	background:none;
+	background: #f3f2f1;
+	opacity: 0.9;
+	border-radius: 10px;
 }
 .jumbotron {
-	opacity: 0.7;
+	background: #f3f2f1;
+	opacity: 0.9;
+	margin: 0;
+	max-width: 100%;
+	border-radius: 10px;
+	font-family: 'Skranji', cursive;
+	letter-spacing: 0.7vw;
+	/*font-size: 60px;*/
+	line-height: 50vh;
+	font-size: 25vw;
+}
+
+.title {
+	color: #1c392c;
+	font-family: 'Skranji', cursive;
+	letter-spacing: 0.1vw;
+	/*font-size: 60px;*/
+	line-height: 2.9vh;
+	font-size: 1.4vw;
+	font-family: 'Catamaran', sans-serif;
 }
