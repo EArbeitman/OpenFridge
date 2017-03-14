@@ -27,7 +27,25 @@ var categoryList = ["#dairy", "#meat", "#vegetables", "#fruit", "#spices", "#fis
 // 		//console.log(ingredientsArray);
 // 	}
 // });
-
+//---------------------------------------------------------
+var mySwitch = true;
+$("#switch").html(" SEARCH RESULTS ");
+// toggle on/off the two sections for the user
+$(document).on("click", "#switch", function () {
+	
+	if (mySwitch) {
+		$(".searchResults").css("display", "block");
+		$(".masterSearch").css("display", "none");
+		$("#switch").html(" INGREDIENTS ");
+		mySwitch = false;
+	} else {
+		$(".searchResults").css("display", "none");
+		$(".masterSearch").css("display", "block");
+		$("#switch").html(" SEARCH RESULTS ");
+		mySwitch = true;
+	}
+});
+//----------------------------------------------------------
 for (var i = 0; i < masterList.length; i++) {
 	var master = masterList[i];
 	master.sort();
@@ -39,7 +57,7 @@ for (var i = 0; i < masterList.length; i++) {
 			$(categoryList[i]).append(row);
 			row = $("<div class='row'>");
 		}
-		var ckbx = $('<div class="col-md-3 btn btn-primary ingredientBtn" data-selected="false" value="' + master[j] + '">' + master[j] + '</div>');
+		var ckbx = $('<div class="col-md-3 btn btn-primary ingredientBtn title" data-selected="false" value="' + master[j] + '">' + master[j] + '</div>');
 		row.append(ckbx);
 
 	}
