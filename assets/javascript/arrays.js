@@ -16,16 +16,17 @@ var legumesArray = ["peas", "black beans", "chickpea", "lentil", "hummus", "soyb
 
 var masterList = [dairyArray, meatArray, vegetablesArray, fruitArray, spicesArray, fishArray, bakingArray, oilArray, seafoodArray, sweetnerArray, nutsArray, condimentsArray, desertArray, beverageArray, legumesArray];
 var categoryList = ["#dairy", "#meat", "#vegetables", "#fruit", "#spices", "#fish", "#baking", "#oil", "#seafood", "#sweetner", "#nuts", "#condiments", "#desert", "#beverage", "#legumes"];
-var ingredientsArray = [];
-var item = "";
-$(document).on("click", ".ingredientBtn", function (){
-	item = $(this).attr("value");
-	console.log(item);
-	if (ingredientsArray.indexOf(item) === -1) {
-		ingredientsArray.push(item);
-		console.log(ingredientsArray);
-	}
-});
+
+// var ingredientsArray = [];
+//var item = "";
+// $(document).on("click", ".ingredientBtn", function (){
+// 	item = $(this).attr("value");
+// 	//console.log(item);
+// 	if (ingredientsArray.indexOf(item) === -1) {
+// 		ingredientsArray.push(item);
+// 		//console.log(ingredientsArray);
+// 	}
+// });
 
 for (var i = 0; i < masterList.length; i++) {
 	var master = masterList[i];

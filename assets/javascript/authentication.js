@@ -1,3 +1,8 @@
+/*Global Variables */
+var userId;
+var username;
+
+
 // Initialize Firebase
 var config = {
 	apiKey: "AIzaSyA1gNR8KEZkiS_AgMt-zkE5kksII0q8hjM",
@@ -8,9 +13,7 @@ var config = {
 };
 firebase.initializeApp(config);
 var database = firebase.database();
-var databaseRef = firebase.auth();
-var username
-
+//var databaseRef = firebase.auth();
 
 
 var txtEmail = $("#email");
@@ -19,11 +22,12 @@ var userName = $("#name");
 var btnSignup = $("#signup");
 var btnLogin = $("#login");
 var btnLogout = $("#logout");
+var justSignedUp = false;
 
 //Add login event
 btnLogin.on("click", e =>{
 	//Get email and password
-	 username = userName.val();
+	username = userName.val();
 	var email = txtEmail.val();
 	var pass = password.val();
 	const auth = firebase.auth();
@@ -33,6 +37,13 @@ btnLogin.on("click", e =>{
 	promise.catch(e => console.log(e.message)); //throw error if cant login
 	//window.location = 'index.html'
 
+	database.ref().on("child_added", function(snapshot) {
+
+      // Change the HTML to reflect
+      console.log("test");
+      console.log(snapshot.fridge);
+      //$("#myFridge").html(snapshot.val().fridge);
+    });
 
 });
 
@@ -40,7 +51,7 @@ btnLogin.on("click", e =>{
 btnSignup.on("click", e =>{
 
 	//Validate for true email address
-	 username = userName.val();
+	username = userName.val();
 	var email = txtEmail.val();
 	var pass = password.val();
 	const auth = firebase.auth();
@@ -51,23 +62,30 @@ btnSignup.on("click", e =>{
 	promise.catch(e => console.log(e.message)); //throw error if cant login
 	//window.location = 'index.html'
 
+	justSignedUp = true;
 
 });
-
 firebase.auth().onAuthStateChanged(firebaseUser => {
 	// takes in callbanck as arg
 	if(firebaseUser){
-		var userId = firebase.auth().currentUser.uid;
+		userId = firebase.auth().currentUser.uid;
 		console.log(firebaseUser);
 		console.log(userId);
-		database.ref().child("users/"+userId).set({
-			username : username,
-			id : userId,
-			fridge: {}
-		})
+		if(justSignedUp){
+			database.ref().child("users/"+userId).set({
+				username : username,
+				//id : userId,
+				fridge: {}
+			});
+		}
+		// database.ref().child("users/").set({
+		// 	username : username,
+		// 	id : userId,
+		// 	fridge: {}
+		// })
 	}
 	else{
-		console.log("not logged in"); 
+		//console.log("not logged in"); 
 	}
 
 }); 

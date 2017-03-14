@@ -35,7 +35,7 @@ _git pull_ // update develop. You should not get merge conflicts here.
 
 This git pull will bring down any code changes that were made earlier
 
-_git merge yourBranch develop // you may get merge conflicts here, which is okay
+_git merge yourBranch develop_ // you may get merge conflicts here, which is okay
 
 You can reconsile merge conflicts by validating the changes with a partner. This 
 is the "testing" Anthony was referring to

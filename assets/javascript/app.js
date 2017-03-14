@@ -1,11 +1,17 @@
+/* Global Variables */
+var ingredientsArray = [];
 
 
-
-$('.ingredientBtn').on('click', function () {
+$(document).on('click', '.ingredientBtn', function () {
 	
-	console.log("Clicked");
-	var ingredient = $(this).attr("data-ingredient");
+	//var ingredient = $(this).attr("data-ingredient");
+	var ingredient = $(this).attr("value");
 	var isSelected = $(this).attr("data-selected");
+
+	// console.log(ingredient);
+	// console.log(isSelected);
+	//console.log($(this).attr("value"));
+
 	//check if ingredient is selected
 	if ( isSelected === "false") {
 		$(this).attr("data-selected", "true");
@@ -14,30 +20,47 @@ $('.ingredientBtn').on('click', function () {
 	} else {
 		console.log("error in the ingredient button function");
 	}
+
 });
 
+$(document).on('click', '.ingredientBtn', addToFridge);
+
 function addToFridge(){
-	//alert("test");
-	//console.log($(this).val());
 
-	var selected = $("#computercheck").prop('checked');
+	var item;
+	var myFridge;
+	var listItem;
+	var deleteButton;
 
-	console.log($(this));
+	item = $(this).attr("value");
 
-	var item = $(this).val();
-
-	var myFridge = $("#myFridge");
-	var listItem = $("<h5>");
+	myFridge = $("#myFridge");
+	listItem = $("<h5>");
 	listItem.text(item);
 
-	var deleteButton = $("<button class='delete'>").text("x");
-	listItem.prepend(deleteButton);
+	if (ingredientsArray.indexOf(item) === -1) {
+		ingredientsArray.push(item);
+		deleteButton = $("<button class='delete'>").text("x");
+		listItem.prepend(deleteButton);
+		myFridge.append(listItem);
+	}
 
-	console.log(listItem);
-
-	myFridge.append(listItem);
 
 }
+
+$("#submitRecipie").on('click', function(){
+
+	console.log(database);
+
+	var updates = {};
+
+	updates['/users/' + userId + '/fridge/'] = ingredientsArray;
+
+	firebase.database().ref().update(updates);
+
+});
+
+
 
 $(document).on("click", "button.delete", function() {
 
