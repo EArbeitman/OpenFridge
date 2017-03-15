@@ -5,7 +5,7 @@ var ingredientsArray = [];
 var ingredient;
 var isSelected;
 $(document).on('click', '.ingredientBtn', function () {
-	
+	event.preventDefault();
 	//var ingredient = $(this).attr("data-ingredient");
 	ingredient = $(this).attr("value");
 	isSelected = $(this).attr("data-selected");
@@ -79,21 +79,22 @@ Using compiled list of ingredients, search for recipies against API
 //-----------------------------------------------------------------
 
 $(document).on("click", "button.delete", function() {
-
+	event.preventDefault();
 	//console.log($(this));
 	//console.log($(this).parent());
 	var myChange = $(this).attr("value");
+	$(this).remove();
 	var myTemp = document.querySelectorAll("div.title[value='"+ myChange +"']");
 	console.log(document.querySelectorAll("div.title[value='"+ myChange +"']"));
-	//myTemp[0].attr("data-selected", "false");
+	$(myTemp[0]).attr("data-selected", "false");
     var x = ingredientsArray.indexOf(myChange)
     ingredientsArray.splice(x,1);
 	
 	console.log(myChange);
-	
-	$(this).remove();
+	//$(this).remove();
 });
 $(document).on("click", ".tSwitch", function() {
+	event.preventDefault();
 	// edamamApiQuery(ingredientsArray, dietOptionsIndex, healthOptionsIndex);
  //    populateResults();
 });
