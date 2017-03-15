@@ -14,7 +14,7 @@ min-width: 100vw; */
 
 
 .setup {
-	display: none;
+	display: block;
 }
 
 
@@ -66,6 +66,13 @@ p {
     position: relative;
     top: -7vw;
     width:95%;   
+}
+
+.youtube {
+    position: absolute;
+    top: 9px;
+    right: 10px;
+    width:25%;   
 }
 
 h4 > a {
@@ -135,9 +142,21 @@ img {
 	font-size: 1.4vw;
 	font-family: 'Catamaran', sans-serif;
 }
-#switch {
-	ont-size: 1.4vw;
+.tSwitch {
+	font-size: 1.4vw;
 	font-family: 'Catamaran', sans-serif;
 	letter-spacing: 0.1vw;
 	border-radius: 10px;
+}
+.modal-header {
+	font-size: 5vw;
+}
+.modal-header, .modal-body, .modal-footer {
+	background: #f3f2f1;
+	border: none;
+	border-radius: 10px;
+}
+.modal-body {
+	font-family: 'Catamaran', sans-serif;
+	letter-spacing: 0.1vw;
 }

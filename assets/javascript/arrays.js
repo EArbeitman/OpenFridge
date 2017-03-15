@@ -29,11 +29,17 @@ var categoryList = ["#dairy", "#meat", "#vegetables", "#fruit", "#spices", "#fis
 // });
 //---------------------------------------------------------
 var mySwitch = true;
+// show th modal on launch
+$('#myModal').modal('show');
+
+// set initial condition for button Search Results 
+// button name changes depending on which section is open
 $("#switch").html(" SEARCH RESULTS ");
 // toggle on/off the two sections for the user
 $(document).on("click", "#switch", function () {
 	
 	if (mySwitch) {
+		populateResults();
 		$(".searchResults").css("display", "block");
 		$(".masterSearch").css("display", "none");
 		$("#switch").html(" INGREDIENTS ");
