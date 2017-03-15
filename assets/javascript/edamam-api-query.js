@@ -32,6 +32,7 @@ function compileUrl(ingredientsArray, dietOptionsIndex, healthOptionsIndex ) {
 	for (i=0; i<ingredientsArray.length; i++){
 		ingredientString += (ingredientsArray[i] + "+");
 	};
+	
 	if (dietOptionsIndex === 0) {
 		var dietOptionsString = "";
 	} else {

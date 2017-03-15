@@ -1,13 +1,13 @@
 body {
 	/* max-width: 900px; */
-	margin: 0px auto;
 /* 	display: flex;
 min-height: 100vh;	
 min-width: 100vw; */
-	box-sizing: border-box;
+	/*box-sizing: border-box;*/
 	background: url("../images/grocery.jpeg");
 	background-position: center;
 	background-size: cover;
+	background-repeat: none;
 	font-family: 'Permanent Marker', cursive;
 	letter-spacing: 0.5vw;
 }
@@ -18,9 +18,9 @@ min-width: 100vw; */
 }
 
 
-.myColumn {
+/*.myColumn {
 	width: 25%;
-}
+}*/
 .panel-heading {
 	font-size: 2.5vw;
 	max-width: 95vw;
@@ -41,11 +41,6 @@ min-width: 100vw; */
 	display: block;
 }
 
-.btn {
-	margin: 0.5vw;
-	width: 23%;
-
-}
 p {
 	background: #f3f2f1;
     opacity: 0.8;
@@ -60,12 +55,12 @@ p {
 
 .post-content {
     /*background: none;
-    /*opacity: 0.8;*/*/
+    /*opacity: 0.8;*/
     margin: 0 auto;
     text-align:center;
     position: relative;
-    top: -7vw;
-    width:95%;   
+    top: -8vw;
+    width:96%;   
 }
 
 .youtube {
@@ -93,7 +88,7 @@ a:focus, a:hover {
     text-align:center;
 }
 div.thumbnail {
-	margin: auto;
+	margin: 0.1vw auto;
 	max-height: 23vw;
 	max-width: 29vw;
 	background: none;
@@ -102,7 +97,7 @@ div.thumbnail {
 	border-radius: 10px;
 }
 img {
-	margin: auto;
+	margin: 0.1vw auto;
 	max-height: 23vw;
 	max-width: 29vw;
 	overflow: hidden;
@@ -132,26 +127,58 @@ img {
 	line-height: 50vh;
 	font-size: 25vw;
 }
-.title[data-selected="true"] {
-	background: #6da20f;
-}
-.title[data-selected="false"] {
-	color: #193328;
-	letter-spacing: 0.1vw;
-	/*font-size: 60px;*/
-	line-height: 2.9vh;
-	font-size: 1.3vw;
+.delete {
+	margin: 0.1vw;
+	width: 10.5vw;
 	font-family: 'Catamaran', sans-serif;
+	font-size: 1.3vw;
+	border: none;
+	display: table;
+
+}
+p.title {
+	font-family: 'Catamaran', sans-serif;
+	color: #193328;
+	font-size: 1.4vw;
+	letter-spacing: 0.1vw;
+}
+.ingredientBtn[data-selected="true"] {
+	background: #6da20f;
+	color: #193328;
+	font-family: 'Catamaran', sans-serif;
+	border-color: #f3f2f1;
+	border-width: 0.05vw
+	padding: .4vw;
+	font-size: 1.9vw;
+	letter-spacing: 0.1vw;
+	line-height: 2.9vh;
+	margin: 0vw;
+	height: 5vh;
+}
+.ingredientBtn[data-selected="false"] {
+	background: #486aab;
+	color: #193328;
+	font-family: 'Catamaran', sans-serif;
+	border-color: #f3f2f1;
+	border-width: 0.05vw;
+	padding: .4vw;
+	font-size: 1.9vw;
+	letter-spacing: 0.1vw;
+	line-height: 2.9vh;
+	margin: 0vw;
+	height: 5vh;
 }
 .tSwitch {
 	font-size: 1.4vw;
 	font-family: 'Catamaran', sans-serif;
 	letter-spacing: 0.1vw;
 	border-radius: 10px;
+	margin: 0.2vw;
 }
 .modal-header {
 	font-family: 'Skranji', cursive;
-	font-size: 10vw;
+	letter-spacing: 0.2vw;
+	font-size: 20vw;
 }
 .modal-header, .modal-body, .modal-footer {
 	background: #f3f2f1;

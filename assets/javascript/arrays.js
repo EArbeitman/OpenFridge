@@ -1,4 +1,4 @@
-var dairyArray = ["butter", "eggs", "milk", "parmesan", "cheddar", "cream", "sour cream", "cream cheese", "mozzarella", "american cheese", "yogurt", "evaporated milk", "condensed milk", "whipped cream", "half and half", "monterey jack cheese", "feta", "cottage cheese", "ice cream", "goat cheese", "frosting", "swiss cheese", "buttermilk", "velvetta", "ricotta", "powdered milk", "blue cheese", "provolone", "colby cheese", "gouda", "pepper jack", "italian cheese", "soft cheese", "romano", "brie", "custard"];
+var dairyArray = ["butter", "eggs", "milk", "parmesan", "cheddar", "cream", "sour cream", "cream cheese", "mozzarella", "american cheese", "yogurt", "evaporated milk", "condensed milk", "whipped cream", "half and half", "monterey jack", "feta", "cottage cheese", "ice cream", "goat cheese", "frosting", "swiss cheese", "buttermilk", "velvetta", "ricotta", "powdered milk", "blue cheese", "provolone", "colby cheese", "gouda", "pepper jack", "italian cheese", "soft cheese", "romano", "brie", "custard"];
 var meatArray = ["chicken breast", "ground beef", "bacon", "sausage", "cooked chicken", "ham", "veal", "beef steak", "hot dog", "port chops", "chicken thighs", "ground turkey", "pork", "turkey", "pepperoni", "whole chicken", "chicken leg", "ground pork", "chicken wings", "chorizo", "polish sausage", "salami", "pork shoulder", "beef roast", "bratwurst", "prosciutto", "chicken roast", "bologna", "corned beef", "lamb chops", "ground lamb", "beef ribs", "duck", "leg of lamb", "chicken giblets", "beef shank", "pork belly", "cornish hen", "lamb shoulder", "lamb shank"];
 var vegetablesArray = ["garlic", "onion", "olive", "tomato", "potato", "salad greens", "carrot", "basil", "parsley", "rosemary", "bell pepper", "chilli pepper", "corn", "ginger", "mushroom", "broccoli", "spinach", "green beans", "celery", "red onions", "cilantro", "cucumber", "pickle", "dill", "avocado", "sweet potato", "zucchini", "shallot", "mixed vegetables", "cabbage", "asparagus", "cauliflower", "mint", "pumpkin", "kale", "frozen vegetables", "scallions", "squash", "sun dried tomato", "horseradish", "sweet corn", "beet"];
 var fruitArray = ["lemon", "banana", "apple", "coconut", "mango", "lime", "orange", "pineapple", "strawberries", "raisin", "blueberries", "grapefruit", "grape", "prunes", "nectarines", "fig", "peach", "cranberries", "raspberry", "pear", "cherry", "apricot", "blackberry", "berries", "date", "watermelon", "kiwi", "craisins", "mandarin", "cantaloupe", "plum", "papaga", "pomegranate", "apple butter", "clementine", "tangarine", "plantains", "passion fruit", "persimmons", "quince", "lychee", "tangelos", "star fruit", "guava"];
@@ -34,7 +34,7 @@ $('#myModal').modal('show');
 
 // set initial condition for button Search Results 
 // button name changes depending on which section is open
-$("#switch").html(" SEARCH RESULTS ");
+$("#switch").html(" RECIPE RESULTS ");
 // toggle on/off the two sections for the user
 $(document).on("click", "#switch", function () {
 	
@@ -47,7 +47,7 @@ $(document).on("click", "#switch", function () {
 	} else {
 		$(".searchResults").css("display", "none");
 		$(".masterSearch").css("display", "block");
-		$("#switch").html(" SEARCH RESULTS ");
+		$("#switch").html(" RECIPE RESULTS ");
 		mySwitch = true;
 	}
 });
@@ -59,12 +59,12 @@ for (var i = 0; i < masterList.length; i++) {
 	var row = $("<div class='row'>");
 	for (var j = 0; j < master.length; j++) {
 
-		if (j % 4 == 0 && row) {
-			$(categoryList[i]).append(row);
-			row = $("<div class='row'>");
-		}
-		var ckbx = $('<div class="col-md-3 btn btn-primary ingredientBtn title" data-selected="false" value="' + master[j] + '">' + master[j] + '</div>');
-		row.append(ckbx);
+		// if (j % 4 == 0 && row) {
+		var temp =	$(categoryList[i])
+		// 	row = $("<div class='row'>");
+		// }
+		var ckbx = $('<div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 btn btn-primary ingredientBtn title" data-selected="false" value="' + master[j] + '">' + master[j] + '</div>');
+		temp.append(ckbx);
 
 	}
 	$(categoryList[i]).append(row);

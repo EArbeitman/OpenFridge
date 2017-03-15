@@ -2,63 +2,69 @@
 var ingredientsArray = [];
 
 
+var ingredient;
+var isSelected;
 $(document).on('click', '.ingredientBtn', function () {
 	
 	//var ingredient = $(this).attr("data-ingredient");
-	var ingredient = $(this).attr("value");
-	var isSelected = $(this).attr("data-selected");
+	ingredient = $(this).attr("value");
+	isSelected = $(this).attr("data-selected");
 
 	//check if ingredient is selected
-	if ( isSelected === "false") {
+	
+	if (isSelected === "false") {
 		$(this).attr("data-selected", "true");
-	} else  if ( isSelected === "true") {
+		console.log("test");
+
+		
+		var myFridge;
+		var listItem;
+		var deleteButton;
+
+		
+
+		// updates['/users/' + userId + '/fridge/'] = ingredientsArray;
+
+		// firebase.database().ref().update(updates);
+
+		myFridge = $("#myFridge");
+		// listItem = $("<h5>");
+		// listItem.text(item);
+		var x = ingredientsArray.indexOf(ingredient);
+		if (x === -1) {
+			ingredientsArray.push(ingredient);
+			deleteButton = $("<button class='col-xs-12 col-sm-12 col-md-6 col-lg-4 btn btn-primary delete' value='" + ingredient +"'>").text(ingredient);
+			// listItem.append(deleteButton);
+			myFridge.append(deleteButton);
+		}
+	} else if ( isSelected === "true"){
 		$(this).attr("data-selected", "false");
-	} else {
+		isSelected = "false"
+		if (x != -1){
+    		ingredientsArray.splice(x,1);
+    		var q = document.querySelectorAll(".delete[value='"+ingredient+"']");
+    		q[0].remove();
+    		console.log("remove");
+		} 
+    } else {
 		console.log("error in the ingredient button function");
 	}
-
+	
 });
-
 /*
 On click listener for adding item to fridge 
 */
-$(document).on('click', '.ingredientBtn', addToFridge);
+
 
 /* 
 Write ingredient to fridge
 Fetch item from database and display to user
 */
-function addToFridge(){
-
-	console.log("test");
-
-	var item;
-	var myFridge;
-	var listItem;
-	var deleteButton;
-
-	item = $(this).attr("value");
-
-	// updates['/users/' + userId + '/fridge/'] = ingredientsArray;
-
-	// firebase.database().ref().update(updates);
-
-	myFridge = $("#myFridge");
-	listItem = $("<h5>");
-	listItem.text(item);
-
-	if (ingredientsArray.indexOf(item) === -1) {
-		ingredientsArray.push(item);
-		deleteButton = $("<button class='delete'>").text("x");
-		listItem.prepend(deleteButton);
-		myFridge.append(listItem);
-	}
-}
 
 /*
 Using compiled list of ingredients, search for recipies against API
 */
-$("#submitRecipie").on('click', function(){
+		$("#submitRecipie").on('click', function(){
 
 	//console.log(database);
 
@@ -68,15 +74,29 @@ $("#submitRecipie").on('click', function(){
 
 	// firebase.database().ref().update(updates);
 
-});
+		});
+
+//-----------------------------------------------------------------
 
 $(document).on("click", "button.delete", function() {
 
 	//console.log($(this));
 	//console.log($(this).parent());
-	$(this).parent().remove();
+	var myChange = $(this).attr("value");
+	var myTemp = document.querySelectorAll("div.title[value='"+ myChange +"']");
+	console.log(document.querySelectorAll("div.title[value='"+ myChange +"']"));
+	//myTemp[0].attr("data-selected", "false");
+    var x = ingredientsArray.indexOf(myChange)
+    ingredientsArray.splice(x,1);
+	
+	console.log(myChange);
+	
+	$(this).remove();
 });
-
+$(document).on("click", ".tSwitch", function() {
+	// edamamApiQuery(ingredientsArray, dietOptionsIndex, healthOptionsIndex);
+ //    populateResults();
+});
 
 // wait for page to load before querying database
 
