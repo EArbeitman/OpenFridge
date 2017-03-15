@@ -8,10 +8,6 @@ $(document).on('click', '.ingredientBtn', function () {
 	var ingredient = $(this).attr("value");
 	var isSelected = $(this).attr("data-selected");
 
-	// console.log(ingredient);
-	// console.log(isSelected);
-	//console.log($(this).attr("value"));
-
 	//check if ingredient is selected
 	if ( isSelected === "false") {
 		$(this).attr("data-selected", "true");
@@ -23,9 +19,18 @@ $(document).on('click', '.ingredientBtn', function () {
 
 });
 
+/*
+On click listener for adding item to fridge 
+*/
 $(document).on('click', '.ingredientBtn', addToFridge);
 
+/* 
+Write ingredient to fridge
+Fetch item from database and display to user
+*/
 function addToFridge(){
+
+	console.log("test");
 
 	var item;
 	var myFridge;
@@ -33,6 +38,10 @@ function addToFridge(){
 	var deleteButton;
 
 	item = $(this).attr("value");
+
+	// updates['/users/' + userId + '/fridge/'] = ingredientsArray;
+
+	// firebase.database().ref().update(updates);
 
 	myFridge = $("#myFridge");
 	listItem = $("<h5>");
@@ -44,28 +53,53 @@ function addToFridge(){
 		listItem.prepend(deleteButton);
 		myFridge.append(listItem);
 	}
-
-
 }
 
+/*
+Using compiled list of ingredients, search for recipies against API
+*/
 $("#submitRecipie").on('click', function(){
 
-	console.log(database);
+	//console.log(database);
 
-	var updates = {};
+	// var updates = {};
 
-	updates['/users/' + userId + '/fridge/'] = ingredientsArray;
+	// updates['/users/' + userId + '/fridge/'] = ingredientsArray;
 
-	firebase.database().ref().update(updates);
+	// firebase.database().ref().update(updates);
 
 });
-
-
 
 $(document).on("click", "button.delete", function() {
 
+	//console.log($(this));
+	//console.log($(this).parent());
 	$(this).parent().remove();
 });
+
+
+// wait for page to load before querying database
+
+//$(document).ready(loadMyFridge);
+
+function loadMyFridge(){
+
+var query = firebase.database().ref("/users/" + userId + "/fridge/").orderByKey();
+	query.once("value")
+		.then(function(snapshot) {
+			snapshot.forEach(function(childSnapshot) {
+
+	var key = childSnapshot.key;
+
+	var childData = childSnapshot.val();
+
+		//console.log(key);
+		//console.log(childData);
+
+		});
+	});
+
+}
 
 
 
