@@ -132,10 +132,11 @@ img {
 	line-height: 50vh;
 	font-size: 25vw;
 }
-
-.title {
+.title[data-selected="true"] {
+	background: #6da20f;
+}
+.title[data-selected="false"] {
 	color: #193328;
-	font-family: 'Skranji', cursive;
 	letter-spacing: 0.1vw;
 	/*font-size: 60px;*/
 	line-height: 2.9vh;
