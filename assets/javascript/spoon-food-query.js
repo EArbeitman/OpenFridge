@@ -34,13 +34,12 @@ function recipeSearch() {
 		if (fridge[i].indexOf(" ") === -1){
 			//console.log("No spaces in the ingredient name.");
 		} else {
-			var alteredWord = fridge[i].replace(" ", "+");
+			var alteredWord = fridge[i].replace(/ /g, "+");
 			fridge[i] = alteredWord;
 		}	
-		console.log("Fixed spaces in the ingredients array.");
-		console.log(fridge);
 	}
-
+	console.log("Fixed spaces in the ingredients array.");
+	console.log(fridge);
 	$.ajax({
 		url: spoonFoodEndPoint + fridge + spoonFoodOptions,
 		method: "GET",
@@ -71,17 +70,20 @@ function recipeSearch() {
 
 
 function youtubeApiQuery(searchTerm) {
-	var termWithOutSpaces = searchTerm.replace(" ","+");
+	var termWithOutSpaces = searchTerm.replace(/ /g , "+");
+	var termWithOutCommas = termWithOutSpaces.replace(/,/g , "");
 	$.ajax({
-		url : "https://www.googleapis.com/youtube/v3/search?part=snippet&q="+termWithOutSpaces+"&type=video&maxresults=2&key=AIzaSyCZbjOu9UHx3jXRWNOWpLcPs9cjzidFbig",
+		url : "https://www.googleapis.com/youtube/v3/search?part=snippet&q="+termWithOutCommas+"&type=video&maxresults=2&key=AIzaSyCZbjOu9UHx3jXRWNOWpLcPs9cjzidFbig",
 		method : "GET"
 	}).done(function(response){
+		console.log(termWithOutCommas);
+		console.log("ajax call finished");
 		console.log(response);
 		var youtubeVideoId = response.items[0].id.videoId;
 		youtubeVideoIdArray.push(youtubeVideoId);
-		var youtubeLink = "https://www.youtube.com/watch?v=" + youtubeVideoIdArray[i];
+		var youtubeLink = "https://www.youtube.com/watch?v=" + youtubeVideoId;
 		youtubeLinkArray.push(youtubeLink);
-		var youtubeEmbed = '<iframe width="854" height="480" src="https://www.youtube.com/embed/'+youtubeVideoIdArray[i]+'" frameborder="0" allowfullscreen></iframe>'
+		var youtubeEmbed = '<iframe width="854" height="480" src="https://www.youtube.com/embed/'+youtubeVideoId+'" frameborder="0" allowfullscreen></iframe>'
 		youtubeEmbedArray.push(youtubeEmbed);
 
 	});
