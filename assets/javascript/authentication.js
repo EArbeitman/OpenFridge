@@ -41,7 +41,7 @@ btnLogin.on("click", e =>{
 
       // Change the HTML to reflect
       console.log("test");
-      console.log(snapshot.fridge);
+      console.log(snapshot.val().fridge);
       //$("#myFridge").html(snapshot.val().fridge);
     });
 
@@ -66,11 +66,15 @@ btnSignup.on("click", e =>{
 
 });
 firebase.auth().onAuthStateChanged(firebaseUser => {
+
+
 	// takes in callbanck as arg
 	if(firebaseUser){
 		userId = firebase.auth().currentUser.uid;
-		console.log(firebaseUser);
-		console.log(userId);
+
+		//console.log(firebaseUser);
+		//console.log(userId);
+		
 		if(justSignedUp){
 			database.ref().child("users/"+userId).set({
 				username : username,
@@ -87,6 +91,8 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 	else{
 		//console.log("not logged in"); 
 	}
+
+	loadMyFridge();
 
 }); 
 
