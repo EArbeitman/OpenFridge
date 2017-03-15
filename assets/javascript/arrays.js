@@ -37,7 +37,7 @@ $('#myModal').modal('show');
 $("#switch").html(" RECIPE RESULTS ");
 // toggle on/off the two sections for the user
 $(document).on("click", "#switch", function () {
-	
+	event.preventDefault();
 	if (mySwitch) {
 		populateResults();
 		$(".searchResults").css("display", "block");
@@ -51,6 +51,17 @@ $(document).on("click", "#switch", function () {
 		mySwitch = true;
 	}
 });
+//----------------------------------------------------------
+$(document).on("click", "#switch2", function (){
+	event.preventDefault();
+	if (mySwitch) {
+		$(".searchResults").css("display", "block");
+		$(".masterSearch").css("display", "none");
+		$("#switch").html(" INGREDIENTS ");
+		mySwitch = false;
+	}
+});
+
 //----------------------------------------------------------
 for (var i = 0; i < masterList.length; i++) {
 	var master = masterList[i];

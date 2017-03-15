@@ -11,7 +11,10 @@ min-width: 100vw; */
 	font-family: 'Permanent Marker', cursive;
 	letter-spacing: 0.5vw;
 }
-
+button.btn:focus {
+	margin: none;
+	border-color: none;
+}
 
 .setup {
 	display: block;
@@ -123,6 +126,7 @@ img {
 	border-radius: 10px;
 	font-family: 'Skranji', cursive;
 	letter-spacing: 0.7vw;
+	/*max-height: 40vh;*/
 	/*font-size: 60px;*/
 	line-height: 50vh;
 	font-size: 25vw;
@@ -174,6 +178,16 @@ p.title {
 	letter-spacing: 0.1vw;
 	border-radius: 10px;
 	margin: 0.2vw;
+	opacity: 0.9;
+}
+#switch2 {
+	float: right;
+	font-size: 1.4vw;
+	font-family: 'Catamaran', sans-serif;
+	letter-spacing: 0.1vw;
+	border-radius: 10px;
+	margin: 0.2vw;
+	opacity: 0.9;
 }
 .modal-header {
 	font-family: 'Skranji', cursive;
