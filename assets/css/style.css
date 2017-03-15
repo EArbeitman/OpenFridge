@@ -128,12 +128,12 @@ img {
 }
 
 .title {
-	color: #1c392c;
+	color: #193328;
 	font-family: 'Skranji', cursive;
 	letter-spacing: 0.1vw;
 	/*font-size: 60px;*/
 	line-height: 2.9vh;
-	font-size: 1.4vw;
+	font-size: 1.3vw;
 	font-family: 'Catamaran', sans-serif;
 }
 .tSwitch {
@@ -143,14 +143,16 @@ img {
 	border-radius: 10px;
 }
 .modal-header {
-	font-size: 5vw;
+	font-family: 'Skranji', cursive;
+	font-size: 10vw;
 }
 .modal-header, .modal-body, .modal-footer {
 	background: #f3f2f1;
 	border: none;
-	border-radius: 10px;
+	border-radius: 20px;
 }
 .modal-body {
 	font-family: 'Catamaran', sans-serif;
 	letter-spacing: 0.1vw;
+	font-size: 1.8vw;
 }
