@@ -142,3 +142,13 @@ img {
 	letter-spacing: 0.1vw;
 	border-radius: 10px;
 }
+
+.modal-header, .modal-body, .modal-footer {
+	background: #f3f2f1;
+	border: none;
+	border-radius: 10px;
+}
+.modal-body {
+	font-family: 'Catamaran', sans-serif;
+	letter-spacing: 0.1vw;
+}
