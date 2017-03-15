@@ -68,6 +68,13 @@ p {
     width:95%;   
 }
 
+.youtube {
+    position: absolute;
+    top: 9px;
+    right: 10px;
+    width:25%;   
+}
+
 h4 > a {
 	background: #486aab;
 	opacity: 0.9;

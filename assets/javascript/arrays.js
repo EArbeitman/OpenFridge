@@ -39,6 +39,7 @@ $("#switch").html(" SEARCH RESULTS ");
 $(document).on("click", "#switch", function () {
 	
 	if (mySwitch) {
+		populateResults();
 		$(".searchResults").css("display", "block");
 		$(".masterSearch").css("display", "none");
 		$("#switch").html(" INGREDIENTS ");
