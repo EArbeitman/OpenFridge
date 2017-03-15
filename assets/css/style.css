@@ -1,11 +1,11 @@
 body {
 	/* max-width: 900px; */
 	margin: 0px auto;
-	display: flex;
-	min-height: 100vh;	
-	min-width: 100vw;
+/* 	display: flex;
+min-height: 100vh;	
+min-width: 100vw; */
 	box-sizing: border-box;
-	background: url("../images/background1.jpg");
+	background: url("../images/grocery.jpeg");
 	background-position: center;
 	background-size: cover;
 	font-family: 'Permanent Marker', cursive;
@@ -17,7 +17,6 @@ body {
 	display: none;
 }
 
-}
 
 .myColumn {
 	width: 25%;
