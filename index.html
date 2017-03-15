@@ -34,43 +34,63 @@
         </div>
       </div>
     </div>
-<!-- start signin section -->
-    <div class="row setup"> 
-  	  <div class="col-xs-0 col-sm-0 col-md-1 col-lg-2">
-  	  </div>
+<!-- modal section for signin -->
 
-  	  <div class="col-sm-12 col-md-10 col-lg-8 text-center">
-  			<div class="input-group input-group-lg">
-  	      <span class="input-group-addon glyphicon glyphicon-user" id="basic-addon1"></span>
-          <input id="name" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
-  	    </div>
 
-  	    <div class="input-group input-group-lg">
-  	      <span class="input-group-addon glyphicon glyphicon-envelope" id="basic-addon1"></span>
-          <input id="email" type="email" class="form-control" placeholder="John.Smith@gmail.com" email="John.Smith@gmail.com" aria-describedby="basic-addon1">
-  	    </div>
+<!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          </div>
+          <div class="modal-body">
+<!-- start signin section --><!-- start signin section -->
+            <div class="row setup"> 
+              <div class="col-sm-12 col-md-10 col-lg-8 text-center">
+                <div class="input-group input-group-lg">
+                  <span class="input-group-addon glyphicon glyphicon-user" id="basic-addon1"></span>
+                  <input id="name" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                </div>
 
-  	    <div class="input-group input-group-lg">
-  	      <span class="input-group-addon" id="basic-addon1"><i class="fa fa-key" aria-hidden="true"></i></span>
-          <input id="password" type="password" class="form-control" placeholder="Password" password="#" aria-describedby="basic-addon1">
-  	    </div>
+                <div class="input-group input-group-lg">
+                  <span class="input-group-addon glyphicon glyphicon-envelope" id="basic-addon1"></span>
+                  <input id="email" type="email" class="form-control" placeholder="John.Smith@gmail.com" email="John.Smith@gmail.com" aria-describedby="basic-addon1">
+                </div>
 
-  	    <div>
-          <br><!-- buttons for signin or signup-->
-  	      <button id="login" class="btn btn-lg btn-warning login" type="submit">LOGIN</button>
-  	      <button id="signup" class="btn btn-lg btn-warning login" type="submit">SIGNUP</button>
-  	      <button id="logout" class="btn btn-lg btn-warning logout" type="submit">LOGOUT</button>
-  	    </div>
-  	  </div>
-      <div class="col-xs-0 col-sm-0 col-md-1 col-lg-2">
+                <div class="input-group input-group-lg">
+                  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-key" aria-hidden="true"></i></span>
+                  <input id="password" type="password" class="form-control" placeholder="Password" password="#" aria-describedby="basic-addon1">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+    <!-- buttons for signin or signup-->
+            <button id="login" class="tSwitch btn btn-lg btn-warning login" data-dismiss="modal" type="submit">LOGIN</button>
+            <button id="signup" class="tSwitch btn btn-lg btn-warning login" data-dismiss="modal" type="submit">SIGNUP</button>
+            <button id="logout" class="tSwitch btn btn-lg btn-warning logout" data-dismiss="modal" type="submit">LOGOUT</button>
+            <button type="button" class="tSwitch btn-lg btn btn-danger" data-dismiss="modal">CLOSE</button>
+            <!-- this button came with bootstrap, not sure we need it -->
+            <!--button type="button" class="tSwitch btn btn-primary">Save changes</button-->
+          </div>
+        </div>
       </div>
-
     </div>
+
+
+
+    
+    
 <!--end signin section-->
-<!-- button to turn on/off search section -->
+<!-- button to turn on/off search  and sign in section -->
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <button id="switch" type="button" class="btn btn-default btn-primary"> 
+        <button id="switch" type="button" class="tSwitch btn btn-lg btn-primary"> 
+        </button>
+        <button type="button" class="tSwitch btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+          SIGN IN 
         </button>
       </div>
     </div>

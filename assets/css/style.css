@@ -14,7 +14,7 @@ body {
 
 
 .setup {
-	display: none;
+	display: block;
 }
 
 }
@@ -136,8 +136,8 @@ img {
 	font-size: 1.4vw;
 	font-family: 'Catamaran', sans-serif;
 }
-#switch {
-	ont-size: 1.4vw;
+.tSwitch {
+	font-size: 1.4vw;
 	font-family: 'Catamaran', sans-serif;
 	letter-spacing: 0.1vw;
 	border-radius: 10px;
