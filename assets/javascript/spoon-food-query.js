@@ -1,8 +1,26 @@
+//$(document).ready(function (){
+
+
+
+
+
+
+
 
 // Variables for search results, search results are set to return 10 recipes
 var searchResultsLabels = [];
 var searchResultsImages = [];
 var searchResultsUrls = [];
+
+// Response Variable Array
+var youtubeVideoIdArray = [];
+
+// Created Link and Embed results from the response
+var youtubeLinkArray = [];
+var youtubeEmbedArray = [];
+
+
+
 
 
 
@@ -42,5 +60,40 @@ function recipeSearch() {
 			searchResultsImages.push(recipeImage);
 			youtubeApiQuery(recipeTitle);
 		}
+		console.log("Recipe results added to the correct arrays. Starting youtube link creation.")
 	});
 }
+
+
+
+
+
+
+
+function youtubeApiQuery(searchTerm) {
+	var termWithOutSpaces = searchTerm.replace(" ","+");
+	$.ajax({
+		url : "https://www.googleapis.com/youtube/v3/search?part=snippet&q="+termWithOutSpaces+"&type=video&maxresults=2&key=AIzaSyCZbjOu9UHx3jXRWNOWpLcPs9cjzidFbig",
+		method : "GET"
+	}).done(function(response){
+		console.log(response);
+		var youtubeVideoId = response.items[0].id.videoId;
+		youtubeVideoIdArray.push(youtubeVideoId);
+		var youtubeLink = "https://www.youtube.com/watch?v=" + youtubeVideoIdArray[i];
+		youtubeLinkArray.push(youtubeLink);
+		var youtubeEmbed = '<iframe width="854" height="480" src="https://www.youtube.com/embed/'+youtubeVideoIdArray[i]+'" frameborder="0" allowfullscreen></iframe>'
+		youtubeEmbedArray.push(youtubeEmbed);
+
+	});
+};
+
+
+
+
+
+
+
+
+
+
+//});
