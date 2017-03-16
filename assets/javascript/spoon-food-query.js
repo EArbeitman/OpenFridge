@@ -58,6 +58,7 @@ function recipeSearch() {
 			searchResultsLabels.push(recipeTitle);
 			searchResultsImages.push(recipeImage);
 			youtubeApiQuery(recipeTitle);
+			populateResults ();
 		}
 		console.log("Recipe results added to the correct arrays. Starting youtube link creation.")
 	});
