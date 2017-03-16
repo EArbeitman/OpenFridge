@@ -4,9 +4,10 @@ var ingredientsArray = [];
 
 var ingredient;
 var isSelected;
+
 $(document).on('click', '.ingredientBtn', function () {
 	event.preventDefault();
-	//var ingredient = $(this).attr("data-ingredient");
+
 	ingredient = $(this).attr("value");
 	isSelected = $(this).attr("data-selected");
 
@@ -14,27 +15,17 @@ $(document).on('click', '.ingredientBtn', function () {
 	
 	if (isSelected === "false") {
 		$(this).attr("data-selected", "true");
-		console.log("test");
+		console.log(ingredient + '' + 'was added to list');
 
-		
 		var myFridge;
-		var listItem;
 		var deleteButton;
 
-		
-
-		// updates['/users/' + userId + '/fridge/'] = ingredientsArray;
-
-		// firebase.database().ref().update(updates);
-
 		myFridge = $("#myFridge");
-		// listItem = $("<h5>");
-		// listItem.text(item);
+
 		var x = ingredientsArray.indexOf(ingredient);
 		if (x === -1) {
 			ingredientsArray.push(ingredient);
 			deleteButton = $("<button class='col-xs-12 col-sm-12 col-md-6 col-lg-4 btn btn-primary delete' value='" + ingredient +"'>").text(ingredient);
-			// listItem.append(deleteButton);
 			myFridge.append(deleteButton);
 		}
 	} else if ( isSelected === "true"){
@@ -44,11 +35,21 @@ $(document).on('click', '.ingredientBtn', function () {
     		ingredientsArray.splice(x,1);
     		var q = document.querySelectorAll(".delete[value='"+ingredient+"']");
     		q[0].remove();
-    		console.log("remove");
+    		//console.log("remove");
 		} 
-    } else {
+    } else 
 		console.log("error in the ingredient button function");
-	}
+
+	// var updates = {};
+
+	// updates['/users/' + userId + '/fridge/'] = ingredientsArray;
+
+	// firebase.database().ref().update(updates);
+
+	loadMyFridge();
+
+
+	
 	
 });
 /*
@@ -64,7 +65,8 @@ Fetch item from database and display to user
 /*
 Using compiled list of ingredients, search for recipies against API
 */
-		$("#submitRecipie").on('click', function(){
+
+//$("#submitRecipie").on('click', function(){
 
 	//console.log(database);
 
@@ -74,14 +76,12 @@ Using compiled list of ingredients, search for recipies against API
 
 	// firebase.database().ref().update(updates);
 
-		});
+//});
 
 //-----------------------------------------------------------------
 
 $(document).on("click", "button.delete", function() {
 	event.preventDefault();
-	//console.log($(this));
-	//console.log($(this).parent());
 	var myChange = $(this).attr("value");
 	$(this).remove();
 	var myTemp = document.querySelectorAll("div.title[value='"+ myChange +"']");
@@ -92,7 +92,11 @@ $(document).on("click", "button.delete", function() {
 	
 	console.log(myChange);
 	//$(this).remove();
+
+
+
 });
+
 $(document).on("click", ".tSwitch", function() {
 	event.preventDefault();
 	// edamamApiQuery(ingredientsArray, dietOptionsIndex, healthOptionsIndex);
@@ -114,12 +118,13 @@ var query = firebase.database().ref("/users/" + userId + "/fridge/").orderByKey(
 
 	var childData = childSnapshot.val();
 
-		//console.log(key);
-		//console.log(childData);
+	//console.log(key);
+	//console.log(childData);
 
 		});
 	});
 
+	console.log(firebase.database().ref("/users/" + userId + "/fridge/brie/").once("value"));
 }
 
 
