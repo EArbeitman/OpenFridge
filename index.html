@@ -4,26 +4,26 @@
 	<meta charset="utf-8">
   	<meta http-equiv="X-UA-Compatible" content="IE=edge">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   	<title>OpenFridge Recipe search</title>
 
 	<link rel="icon" href="assets/images/tomato.png">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  	
 
   	<!--Firebase reference -->
   	<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
 
   	
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+    
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
     <link href="https://fonts.googleapis.com/css?family=Catamaran:500|Permanent+Marker|Skranji:700" rel="stylesheet">
 	<script src="https://use.fontawesome.com/94d0e78a48.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
   <div class="container">
@@ -248,8 +248,25 @@
         <div class="panel-heading">
             <span class="fa fa-cutlery"></span>  Recipe Results
         </div>
-        <form class="panel-body" id="resultsList">
-
+        <form class="panel-body" >
+<!-- from swiper api -->
+          <div class="swiper-container">
+              <div class="swiper-wrapper">
+                  <div id="resultsList0" class="swiper-slide"></div>
+                  <div id="resultsList1" class="swiper-slide"></div>
+                  <div id="resultsList2" class="swiper-slide"></div>
+                  <div id="resultsList3" class="swiper-slide"></div>
+                  <div id="resultsList4" class="swiper-slide"></div>
+                  <div id="resultsList5" class="swiper-slide"></div>
+                  <div id="resultsList6" class="swiper-slide"></div>
+                  <div id="resultsList7" class="swiper-slide"></div>
+                  <div id="resultsList8" class="swiper-slide"></div>
+                  <div id="resultsList9" class="swiper-slide"></div>
+              </div>
+              <!-- Add Pagination -->
+              <div class="swiper-pagination"></div>
+<!-- end swiper api code-->
+          </div>
         </form>
       </div> <!-- end column -->
 
@@ -269,7 +286,10 @@
       </div><!-- end of column for fridgePanel -->
     </div> <!-- end row master search-->
   </div> <!-- end div class container-->
-</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+
 <script type="text/javascript" src = "assets/javascript/search-results.js"></script>
 
 <script type="text/javascript" src = "assets/javascript/app.js"></script>
@@ -281,6 +301,6 @@
 <script type="text/javascript" src = "assets/javascript/youtube-api-query.js"></script>
 
 <script type="text/javascript" src = "assets/javascript/spoon-food-query.js"></script>
-
+</body>
 
 </html>

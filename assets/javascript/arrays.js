@@ -18,30 +18,23 @@ var masterList = [dairyArray, meatArray, vegetablesArray, fruitArray, spicesArra
 var categoryList = ["#dairy", "#meat", "#vegetables", "#fruit", "#spices", "#fish", "#baking", "#oil", "#seafood", "#sweetner", "#nuts", "#condiments", "#desert", "#beverage", "#legumes"];
 //---------------------------------------------------------
 // swifer js from api
-var toggleMenu = function(){
-			if (swiper.previousIndex == 0)
-				swiper.slidePrev()
-		}
-		, menuButton = document.getElementsByClassName('menu-button')[0]
-		, swiper = new Swiper('.swiper-container', {
-			slidesPerView: 'auto'
-			, initialSlide: 1
-			, resistanceRatio: .00000000000001
-			, onSlideChangeStart: function(slider) {
-				if (slider.activeIndex == 0) {
-					menuButton.classList.add('cross')
-					menuButton.removeEventListener('click', toggleMenu, false)
-				} else
-					menuButton.classList.remove('cross')
-			}
-			, onSlideChangeEnd: function(slider) {
-				if (slider.activeIndex == 0)
-					menuButton.removeEventListener('click', toggleMenu, false)
-				else
-					menuButton.addEventListener('click', toggleMenu, false)
-			}
-			, slideToClickedSlide: true
-		})
+//needed for swiper coverflow
+var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        coverflow: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows : true
+        }
+    });
+//needed for swiper page slide
+
 //---------------------------------------------------------
 
 // var ingredientsArray = [];
