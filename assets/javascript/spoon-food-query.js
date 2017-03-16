@@ -29,6 +29,9 @@ const spoonFoodEndPoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashap
 const spoonFoodOptions = "&limitLicense=false&number=10&ranking=2";
 
 function recipeSearch() {
+	searchResultsLabels = [];
+	searchResultsImages = [];
+	searchResultsUrls = [];
 	var fridge = ingredientsArray;
 	for (i=0; i<fridge.length; i++){
 		if (fridge[i].indexOf(" ") === -1){
