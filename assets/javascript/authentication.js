@@ -27,6 +27,9 @@ var justSignedUp = false;
 //Add login event
 btnLogin.on("click", e =>{
 	//Get email and password
+
+	console.log(userId + " logged in");
+
 	username = userName.val();
 	var email = txtEmail.val();
 	var pass = password.val();
@@ -35,15 +38,15 @@ btnLogin.on("click", e =>{
 	const promise = auth.signInWithEmailAndPassword(email, pass); // return promise
 
 	promise.catch(e => console.log(e.message)); //throw error if cant login
-	//window.location = 'index.html'
 
-	database.ref().on("child_added", function(snapshot) {
+	//window.location = 'index.html'
+	//database.ref().on("child_added", function(snapshot) {
 
       // Change the HTML to reflect
-      console.log("test");
-      console.log(snapshot.val().fridge);
+      //console.log("test");
+      //console.log(snapshot.val());
       //$("#myFridge").html(snapshot.val().fridge);
-    });
+    //});
 
 });
 
@@ -51,6 +54,8 @@ btnLogin.on("click", e =>{
 btnSignup.on("click", e =>{
 
 	//Validate for true email address
+	console.log(userId + "signed up in");
+
 	username = userName.val();
 	var email = txtEmail.val();
 	var pass = password.val();
@@ -67,32 +72,24 @@ btnSignup.on("click", e =>{
 });
 firebase.auth().onAuthStateChanged(firebaseUser => {
 
+	//console.log(firebaseUser);
 
-	// takes in callbanck as arg
-	if(firebaseUser){
-		userId = firebase.auth().currentUser.uid;
+	// takes in callback as arg
+	// if(firebaseUser){
 
-		//console.log(firebaseUser);
-		//console.log(userId);
+	/* Grab user id */
+	userId = firebase.auth().currentUser.uid;
 		
-		if(justSignedUp){
-			database.ref().child("users/"+userId).set({
-				username : username,
-				//id : userId,
-				fridge: {}
-			});
-		}
-		// database.ref().child("users/").set({
-		// 	username : username,
-		// 	id : userId,
-		// 	fridge: {}
-		// })
-	}
-	else{
-		//console.log("not logged in"); 
+	/* Create entry in database if user signed up */
+	if(justSignedUp){
+		database.ref().child("users/"+userId).set({
+			username : username,
+			fridge: {}
+		});
 	}
 
-	loadMyFridge();
+	//}
+
 
 }); 
 
