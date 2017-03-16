@@ -13,11 +13,11 @@ var searchResultsImages = [];
 var searchResultsUrls = [];
 
 // Response Variable Array
-var youtubeVideoIdArray = [];
+var youtubeVideoIdArray = ["","","","","","","","","",""];
 
 // Created Link and Embed results from the response
-var youtubeLinkArray = [];
-var youtubeEmbedArray = [];
+var youtubeLinkArray = ["","","","","","","","","",""];
+var youtubeEmbedArray = ["","","","","","","","","",""];
 
 
 
@@ -57,10 +57,10 @@ function recipeSearch() {
 			searchResultsUrls.push("https://spoonacular.com/recipes/-" + recipeId);
 			searchResultsLabels.push(recipeTitle);
 			searchResultsImages.push(recipeImage);
-			youtubeApiQuery(recipeTitle);
-			populateResults ();
+			youtubeApiQuery(recipeTitle, i);
 		}
 		console.log("Recipe results added to the correct arrays. Starting youtube link creation.")
+		populateResults ();
 	});
 }
 
@@ -70,7 +70,8 @@ function recipeSearch() {
 
 
 
-function youtubeApiQuery(searchTerm) {
+function youtubeApiQuery(searchTerm,i) {
+	var index = i;
 	var termWithOutSpaces = searchTerm.replace(/ /g , "+");
 	var termWithOutCommas = termWithOutSpaces.replace(/,/g , "");
 	$.ajax({
@@ -81,11 +82,11 @@ function youtubeApiQuery(searchTerm) {
 		console.log("ajax call finished");
 		console.log(response);
 		var youtubeVideoId = response.items[0].id.videoId;
-		youtubeVideoIdArray.push(youtubeVideoId);
+		youtubeVideoIdArray.splice(index,1,youtubeVideoId);
 		var youtubeLink = "https://www.youtube.com/watch?v=" + youtubeVideoId;
-		youtubeLinkArray.push(youtubeLink);
+		youtubeLinkArray.splice(index,1,youtubeLink);
 		var youtubeEmbed = '<iframe width="854" height="480" src="https://www.youtube.com/embed/'+youtubeVideoId+'" frameborder="0" allowfullscreen></iframe>'
-		youtubeEmbedArray.push(youtubeEmbed);
+		youtubeEmbedArray.splice(index,1,youtubeEmbed);
 
 	});
 };

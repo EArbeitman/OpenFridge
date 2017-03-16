@@ -109,3 +109,9 @@ for (var i = 0; i < masterList.length; i++) {
 	$(categoryList[i]).append(row);
 
 }
+
+$(document).on("click", ".youtube", function (){
+	event.preventDefault();
+	var index=$(this).attr("data-Youtube");
+	window.open(youtubeLinkArray[index]);
+});
