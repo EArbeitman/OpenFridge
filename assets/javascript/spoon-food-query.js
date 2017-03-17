@@ -20,7 +20,7 @@ var youtubeEmbedArray = ["","","","","","","","","",""];
 // The endpoint and key for the spoonacular API
 const mashapeKey = "bxXFwnl1pJmshzspDDYGy3lvzL6sp1mO26njsn6pzoWcDjvhGD"
 const spoonFoodEndPoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients="
-const spoonFoodOptions = "&limitLicense=false&number=10&ranking=2";
+const spoonFoodOptions = "&limitLicense=false&number=100&ranking=2";
 
 //==========================================================================================
 
@@ -66,11 +66,14 @@ function recipeSearch() {
 		console.log("success, spoonacular api queried.");
 		console.log(response);
 
+		// Get a random number from 0 - 90
+		var randomNumber = Math.floor(Math.random() * 90);
+
 		// Grab the first 10 results and add their id, title, and image urls to the variable arrays for them
 		for (i=0; i<10; i++) {
-			var recipeId = response[i].id;
-			var recipeTitle = response[i].title;
-			var recipeImage = response[i].image;
+			var recipeId = response[i + randomNumber].id;
+			var recipeTitle = response[i +randomNumber].title;
+			var recipeImage = response[i + randomNumber].image;
 			searchResultsUrls.push("https://spoonacular.com/recipes/-" + recipeId);
 			searchResultsLabels.push(recipeTitle);
 			searchResultsImages.push(recipeImage);
