@@ -2,6 +2,8 @@
 var userId;
 var username;
 
+var databaseRef;
+var fridgeList;
 
 // Initialize Firebase
 var config = {
@@ -13,8 +15,6 @@ var config = {
 };
 firebase.initializeApp(config);
 var database = firebase.database();
-//var databaseRef = firebase.auth();
-
 
 var txtEmail = $("#email");
 var password = $("#password");
@@ -22,11 +22,13 @@ var userName = $("#name");
 var btnSignup = $("#signup");
 var btnLogin = $("#login");
 var btnLogout = $("#logout");
-var justSignedUp = false;
+var justSignedUp = false; // flag if user just signed up with openFridge
 
 //Add login event
 btnLogin.on("click", e =>{
-	//Get email and password
+	//Get email and password from web form
+	console.log(userId + " logged in");
+
 	username = userName.val();
 	var email = txtEmail.val();
 	var pass = password.val();
@@ -35,15 +37,6 @@ btnLogin.on("click", e =>{
 	const promise = auth.signInWithEmailAndPassword(email, pass); // return promise
 
 	promise.catch(e => console.log(e.message)); //throw error if cant login
-	//window.location = 'index.html'
-
-	database.ref().on("child_added", function(snapshot) {
-
-      // Change the HTML to reflect
-      console.log("test");
-      console.log(snapshot.val().fridge);
-      //$("#myFridge").html(snapshot.val().fridge);
-    });
 
 });
 
@@ -51,6 +44,8 @@ btnLogin.on("click", e =>{
 btnSignup.on("click", e =>{
 
 	//Validate for true email address
+	console.log(userId + "signed up");
+
 	username = userName.val();
 	var email = txtEmail.val();
 	var pass = password.val();
@@ -58,41 +53,28 @@ btnSignup.on("click", e =>{
 
 	const promise = auth.createUserWithEmailAndPassword(email, pass); // return promise
 
-	//promise.then(user => console.log(user));
 	promise.catch(e => console.log(e.message)); //throw error if cant login
-	//window.location = 'index.html'
 
 	justSignedUp = true;
 
 });
 firebase.auth().onAuthStateChanged(firebaseUser => {
 
+	console.log("user state change");
 
-	// takes in callbanck as arg
-	if(firebaseUser){
-		userId = firebase.auth().currentUser.uid;
-
-		//console.log(firebaseUser);
-		//console.log(userId);
+	/* Grab user id */
+	userId = firebase.auth().currentUser.uid;
 		
-		if(justSignedUp){
-			database.ref().child("users/"+userId).set({
-				username : username,
-				//id : userId,
-				fridge: {}
-			});
-		}
-		// database.ref().child("users/").set({
-		// 	username : username,
-		// 	id : userId,
-		// 	fridge: {}
-		// })
-	}
-	else{
-		//console.log("not logged in"); 
+	/* Create entry in database if user signed up */
+	if(justSignedUp){
+		database.ref().child("users/"+userId).set({
+			username : username,
+			fridge: {}
+		});
 	}
 
-	loadMyFridge();
+	databaseRef = database.ref().child('/users/' + userId + "/");
+	fridgeList = databaseRef.child('fridge');
 
 }); 
 
@@ -100,6 +82,5 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 btnLogout.on("click", e =>{
 	console.log("logout now");
 	firebase.auth().signOut();
-	//window.location = 'login.html'
 
 });
