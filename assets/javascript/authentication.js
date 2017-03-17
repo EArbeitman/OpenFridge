@@ -5,9 +5,6 @@ var username;
 var databaseRef;
 var fridgeList;
 
-console.log("test debug 2");
-
-
 // Initialize Firebase
 var config = {
 	apiKey: "AIzaSyA1gNR8KEZkiS_AgMt-zkE5kksII0q8hjM",
@@ -18,8 +15,6 @@ var config = {
 };
 firebase.initializeApp(config);
 var database = firebase.database();
-//var databaseRef = firebase.auth();
-
 
 var txtEmail = $("#email");
 var password = $("#password");
@@ -27,12 +22,11 @@ var userName = $("#name");
 var btnSignup = $("#signup");
 var btnLogin = $("#login");
 var btnLogout = $("#logout");
-var justSignedUp = false;
+var justSignedUp = false; // flag if user just signed up with openFridge
 
 //Add login event
 btnLogin.on("click", e =>{
-	//Get email and password
-
+	//Get email and password from web form
 	console.log(userId + " logged in");
 
 	username = userName.val();
@@ -44,22 +38,13 @@ btnLogin.on("click", e =>{
 
 	promise.catch(e => console.log(e.message)); //throw error if cant login
 
-	//window.location = 'index.html'
-	//database.ref().on("child_added", function(snapshot) {
-
-      // Change the HTML to reflect
-      //console.log("test");
-      //console.log(snapshot.val());
-      //$("#myFridge").html(snapshot.val().fridge);
-    //});
-
 });
 
 //Add signup event
 btnSignup.on("click", e =>{
 
 	//Validate for true email address
-	console.log(userId + "signed up in");
+	console.log(userId + "signed up");
 
 	username = userName.val();
 	var email = txtEmail.val();
@@ -68,21 +53,14 @@ btnSignup.on("click", e =>{
 
 	const promise = auth.createUserWithEmailAndPassword(email, pass); // return promise
 
-	//promise.then(user => console.log(user));
 	promise.catch(e => console.log(e.message)); //throw error if cant login
-	//window.location = 'index.html'
 
 	justSignedUp = true;
 
 });
 firebase.auth().onAuthStateChanged(firebaseUser => {
 
-	console.log("on state");
-
-	//console.log(firebaseUser);
-
-	// takes in callback as arg
-	// if(firebaseUser){
+	console.log("user state change");
 
 	/* Grab user id */
 	userId = firebase.auth().currentUser.uid;
@@ -98,14 +76,11 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 	databaseRef = database.ref().child('/users/' + userId + "/");
 	fridgeList = databaseRef.child('fridge');
 
-
-
 }); 
 
 //Logout event
 btnLogout.on("click", e =>{
 	console.log("logout now");
 	firebase.auth().signOut();
-	//window.location = 'login.html'
 
 });

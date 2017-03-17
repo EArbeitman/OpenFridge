@@ -9,12 +9,14 @@ var ingredientsArray = [];
 var ingredient;
 var isSelected;
 
-var deleteButton;
+var deleteButton; // moved delete button to global scope
 
 $(document).on('click', '.ingredientBtn', function () {
 
 	// databaseRef = database.ref().child('/users/' + userId + "/");
 	// fridgeList = databaseRef.child('fridge');
+
+	fridgeList.push(ingredient);
 
 	event.preventDefault();
 
@@ -28,7 +30,6 @@ $(document).on('click', '.ingredientBtn', function () {
 		console.log(ingredient + '' + 'was added to list');
 
 		var myFridge;
-		//var deleteButton;
 
 		myFridge = $("#myFridge");
 
@@ -47,19 +48,22 @@ $(document).on('click', '.ingredientBtn', function () {
     		var q = document.querySelectorAll(".delete[value='"+ingredient+"']");
     		q[0].remove();
     		fridgeList.remove(ingredient);
-    		//console.log("remove");
 		} 
     } else 
 		console.log("error in the ingredient button function");
 
 
-	fridgeList.push(ingredient);
+	// fridgeList.push(ingredient);
 
 	
 });
 
 
-/* on child_Added listener event */
+/* 
+ * on child_Added listener event 
+ * seems to be causing page to reload when item is deselected from list
+ */
+
 fridgeList.on('child_added', function(snapshot){
 
 	deleteButton.attr('id', snapshot.key);
@@ -67,69 +71,41 @@ fridgeList.on('child_added', function(snapshot){
 });
 
 
-/* 
-Write ingredient to fridge
-Fetch item from database and display to user
-*/
+fridgeList.on('child_removed', snapshot =>{
 
-/*
-Using compiled list of ingredients, search for recipies against API
-*/
-
-//-----------------------------------------------------------------
-
-$(document).on("click", "button.delete", function() {
-	event.preventDefault();
-	var myChange = $(this).attr("value");
-	$(this).remove();
-	var myTemp = document.querySelectorAll("div.title[value='"+ myChange +"']");
-	console.log(document.querySelectorAll("div.title[value='"+ myChange +"']"));
-	$(myTemp[0]).attr("data-selected", "false");
-    var x = ingredientsArray.indexOf(myChange)
-    ingredientsArray.splice(x,1);
-	
-	console.log(myChange);
-
-	var ingredientKey = $(this).attr('id');
-	console.log(ingredientKey);
-
-	databaseRef = database.ref().child('/users/' + userId + "/");
-	fridgeList = databaseRef.child('fridge');
-
-	fridgeList.child(ingredientKey).remove();
-
-
-
-
+	/* do something */
 });
 
+
+$(document).on("click", "button.delete", function() {
+
+	var myChange;
+	var myTemp;
+	var ingredientKey;
+	var x;
+
+	event.preventDefault();
+
+	myChange = $(this).attr("value");
+	$(this).remove(); 
+	myTemp = document.querySelectorAll("div.title[value='"+ myChange +"']");
+	$(myTemp[0]).attr("data-selected", "false");
+    x = ingredientsArray.indexOf(myChange)
+    ingredientsArray.splice(x,1);
+
+	ingredientKey = $(this).attr('id');
+
+	// databaseRef = database.ref().child('/users/' + userId + "/");
+	// fridgeList = databaseRef.child('fridge');
+
+	// fridgeList.child(ingredientKey).remove();
+
+});
 
 
 $(document).on("click", ".tSwitch", function() {
 	event.preventDefault();
-	// edamamApiQuery(ingredientsArray, dietOptionsIndex, healthOptionsIndex);
- //    populateResults();
 });
-
-
-function loadMyFridge(){
-
-// var query = firebase.database().ref("/users/" + userId + "/fridge/").orderByKey();
-// 	query.once("value")
-// 		.then(function(snapshot) {
-// 			snapshot.forEach(function(childSnapshot) {
-
-// 	var key = childSnapshot.key;
-
-// 	var childData = childSnapshot.val();
-
-// 	//console.log(key);
-// 	//console.log(childData);
-
-// 		});
-// 	});
-
-}
 
 
 
