@@ -1,4 +1,4 @@
-$(document).ready(function (){
+//$(document).ready(function (){
 
 
 
@@ -141,4 +141,4 @@ function youtubeApiQuery(searchTerm,i) {
 
 
 // End of Document.ready
-});
+//});
