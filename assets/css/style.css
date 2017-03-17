@@ -6,8 +6,12 @@ min-width: 100vw; */
 	/*box-sizing: border-box;*/
 	background: url("../images/grocery.jpeg");
 	background-position: center;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
 	background-size: cover;
 	background-repeat: none;
+	background-attachment: fixed;
 	font-family: 'Permanent Marker', cursive;
 	letter-spacing: 0.5vw;
 }
