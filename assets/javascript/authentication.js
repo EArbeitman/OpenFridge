@@ -2,6 +2,11 @@
 var userId;
 var username;
 
+var databaseRef;
+var fridgeList;
+
+console.log("test debug 2");
+
 
 // Initialize Firebase
 var config = {
@@ -72,6 +77,8 @@ btnSignup.on("click", e =>{
 });
 firebase.auth().onAuthStateChanged(firebaseUser => {
 
+	console.log("on state");
+
 	//console.log(firebaseUser);
 
 	// takes in callback as arg
@@ -88,7 +95,9 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 		});
 	}
 
-	//}
+	databaseRef = database.ref().child('/users/' + userId + "/");
+	fridgeList = databaseRef.child('fridge');
+
 
 
 }); 
