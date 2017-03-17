@@ -1,13 +1,9 @@
 // $(document).ready( function () {
 
-
-
-
 // API requirements
 const edamamEndPoint = "https://api.edamam.com/search?";
 const edamamAppId = "&app_id=1681d7cb";
 const edamamAppKey = "&app_key=ff1bf86dcd5397a0fae4853fae9186f2";
-
 
 // Optional search parameter lists
 const dietOptions = ["none", "balanced", "high-protein", "low-fat", "low-carb"];
@@ -25,7 +21,6 @@ var searchResultsLabels = [];
 var searchResultsImages = [];
 var searchResultsUrls = [];
 
-
 // Creates a url from the search parameters
 function compileUrl(ingredientsArray, dietOptionsIndex, healthOptionsIndex ) {
 	var ingredientString = "q=";
@@ -33,20 +28,17 @@ function compileUrl(ingredientsArray, dietOptionsIndex, healthOptionsIndex ) {
 		ingredientString += (ingredientsArray[i] + "+");
 	};
 	
-	if (dietOptionsIndex === 0) {
+	if(dietOptionsIndex === 0 || healthOptionsIndex === 0){
 		var dietOptionsString = "";
-	} else {
-		var dietOptionsString = ("&diet=" + dietOptions[dietOptionsIndex]);
-	}
-	if (healthOptionsIndex === 0) {
 		var healthOptionsString = "";
-	} else {
+	}
+	else{
+		var dietOptionsString = ("&diet=" + dietOptions[dietOptionsIndex]);
 		var healthOptionsString = ("&health=" + healthOptions[healthOptionsIndex]);
 	}
+
 	return edamamEndPoint + ingredientString + edamamAppId + edamamAppKey + dietOptionsString + healthOptionsString
 };
-
-
 
 // Query the API and stores the first 10 result's labels, images and links 
 function edamamApiQuery(ingredientsArray, dietOptionsIndex, healthOptionsIndex){
@@ -66,8 +58,5 @@ function edamamApiQuery(ingredientsArray, dietOptionsIndex, healthOptionsIndex){
 	});
 
 };
-
-
-
 
 // });

@@ -95,7 +95,17 @@ for (var i = 0; i < masterList.length; i++) {
 		var temp =	$(categoryList[i])
 		// 	row = $("<div class='row'>");
 		// }
-		var ckbx = $('<div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 btn btn-primary ingredientBtn title" data-selected="false" value="' + master[j] + '">' + master[j] + '</div>');
+
+		//var ckbx = $('<div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 btn btn-primary ingredientBtn title" data-selected="false" value="' + master[j] + '">' + master[j] + '</div>');
+
+		/*Attempt to simplify button creation */
+		var cxbx = $('<div>');
+		cxbx.addClass("col-xs-6 col-sm-6 col-md-4 col-lg-3 btn btn-primary ingredientBtn title");
+		cxbx.attr("data-selected", "false"); //should be a boolean
+		cxbx.val(master[j]);
+		cxbx.text(master[j]);
+
+
 		temp.append(ckbx);
 
 	}
