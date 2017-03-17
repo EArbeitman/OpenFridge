@@ -61,6 +61,7 @@ Write ingredient to fridge
 Fetch item from database and display to user
 */
 
+
 /*
 Using compiled list of ingredients, search for recipies against API
 */
@@ -70,11 +71,25 @@ Using compiled list of ingredients, search for recipies against API
 
 	// var updates = {};
 
+// fridgeList.on('child_added', function(snapshot){
+
+// 	deleteButton.attr('id', snapshot.key);
+
+// });
+
+
 	// updates['/users/' + userId + '/fridge/'] = ingredientsArray;
+
 
 	// firebase.database().ref().update(updates);
 
 		});
+
+// fridgeList.on('child_removed', snapshot =>{
+
+// 	/* do something */
+// });
+
 
 //-----------------------------------------------------------------
 

@@ -114,7 +114,9 @@ img {
 	border-radius: 10px;
 	
 }
-
+.add {
+	margin-bottom: 1vh;
+}
 .fridgeList {
 	padding: 2vw;
 	opacity: 0.9;
@@ -124,6 +126,7 @@ img {
 	opacity: 0.9;
 	border-radius: 10px;
 }
+
 .jumbotron {
 	background: #f3f2f1;
 	opacity: 0.9;
@@ -132,10 +135,9 @@ img {
 	border-radius: 10px;
 	font-family: 'Skranji', cursive;
 	letter-spacing: 0.7vw;
-	/*max-height: 40vh;*/
-	/*font-size: 60px;*/
-	line-height: 50vh;
-	font-size: 25vw;
+	line-height: 10vh;
+	font-size: 25vh;
+	padding: none;
 }
 .delete {
 	margin: 0.1vw;
@@ -145,6 +147,12 @@ img {
 	border: none;
 	display: table;
 
+}
+a.collapsed {
+
+}
+h4.panel-title {
+	line-height: 4vh;
 }
 p.title {
 	font-family: 'Catamaran', sans-serif;
