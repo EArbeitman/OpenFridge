@@ -1,19 +1,8 @@
 $(document).ready(function (){
 
-
-
-
-
-
 const spoonTriviaEndPoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/trivia/random";
 const spoonJokeEndPoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/jokes/random"
 const mashapeKey = "bxXFwnl1pJmshzspDDYGy3lvzL6sp1mO26njsn6pzoWcDjvhGD";
-
-
-
-
-
-
 
 // Gets a random food related joke or trivia quote.
 function getSpoonQuote(){
@@ -37,9 +26,6 @@ function getSpoonQuote(){
 		console.log("text ", text);
 	});
 };
-
-
-
 
 
 });
