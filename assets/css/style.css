@@ -80,9 +80,9 @@ p {
 
 h4 > a {
 	background: #486aab;
-	opacity: 0.9;
+	opacity: 0.95;
 	padding: 5px;
-	font-size: 20px;
+	font-size: 2vw;
 }
 a:focus, a:hover {
 	text-decoration: none;
@@ -114,9 +114,13 @@ img {
 	border-radius: 10px;
 	
 }
-.add {
+.custom {
 	margin-bottom: 1vh;
+	font-family: 'Catamaran', sans-serif;
+	font-weight:  700;
+	
 }
+
 .fridgeList {
 	padding: 2vw;
 	opacity: 0.9;
@@ -148,9 +152,10 @@ img {
 	display: table;
 
 }
-a.collapsed {
-
+/*.tHead {
+	padding: 1vw;
 }
+*/
 h4.panel-title {
 	line-height: 4vh;
 }

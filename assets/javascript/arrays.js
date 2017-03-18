@@ -13,7 +13,7 @@ var condimentsArray = ["mayonnaise", "mustard", "ketchup", "vinegar", "balsamic 
 var desertArray = ["chocolate", "apple sauce", "graham cracker", "marshmallow", "potato chips", "pudding mix", "chocolate morsels", "bittersweet chocolate", "cookie dough", "chocolate syrup", "nutella"];
 var beverageArray = ["apple juice", "coffee", "orange juice", "tea", "espresso", "tomato juice", "green tea", "cranberry juice", "coke", "lemonade", "ginger ale", "pineapple juice", "fruit juice", "club soda", "sprite", "grenadine", "margarita mix"];
 var legumesArray = ["peas", "black beans", "chickpea", "lentil", "hummus", "soybeans", "pinto beans", "cannellini beans", "navy beans", "kidney beans", "lima beans", "green beans", "french beans"];
-
+var myIngredientsArray = [];
 var masterList = [dairyArray, meatArray, vegetablesArray, fruitArray, spicesArray, fishArray, bakingArray, oilArray, seafoodArray, sweetnerArray, nutsArray, condimentsArray, desertArray, beverageArray, legumesArray];
 var categoryList = ["#dairy", "#meat", "#vegetables", "#fruit", "#spices", "#fish", "#baking", "#oil", "#seafood", "#sweetner", "#nuts", "#condiments", "#desert", "#beverage", "#legumes"];
 //---------------------------------------------------------
@@ -107,4 +107,15 @@ $(document).on("click", ".youtube", function (){
 	event.preventDefault();
 	var index=$(this).attr("data-Youtube");
 	window.open(youtubeLinkArray[index]);
+});
+
+$(document).on("click", "#add", function () {
+	var tempIngredient = $(this).val().trim();
+	console.log(tempIngredient);
+	if (myIngredientsArray.indexOf(tempIngredient) === -1) {
+		myIngredientsArray.push(tempIngredient);
+		var temp =	$("#custom")
+		var ckbx = $('<div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 btn btn-primary ingredientBtn title" data-selected="false" value="' + tempIngredient + '">' + tempIngredient + '</div>');
+		temp.append(ckbx);
+	}
 });
