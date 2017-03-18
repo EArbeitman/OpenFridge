@@ -105,17 +105,19 @@ for (var i = 0; i < masterList.length; i++) {
 
 $(document).on("click", ".youtube", function (){
 	event.preventDefault();
-	var index=$(this).attr("data-Youtube");
+	var index = $(this).attr("data-Youtube");
 	window.open(youtubeLinkArray[index]);
 });
 
 $(document).on("click", "#add", function () {
-	var tempIngredient = $(this).val().trim();
-	console.log(tempIngredient);
-	if (myIngredientsArray.indexOf(tempIngredient) === -1) {
+	var tempIngredient = $("#custom1")[0];
+	var timIngredient = tempIngredient.value;
+	$("#custom1").val('');
+	console.log(timIngredient);
+	if (myIngredientsArray.indexOf(timIngredient) === -1) {
 		myIngredientsArray.push(tempIngredient);
 		var temp =	$("#custom")
-		var ckbx = $('<div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 btn btn-primary ingredientBtn title" data-selected="false" value="' + tempIngredient + '">' + tempIngredient + '</div>');
+		var ckbx = $('<div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 btn btn-primary ingredientBtn title" data-selected="false" value="' + timIngredient + '">' + timIngredient + '</div>');
 		temp.append(ckbx);
 	}
 });
