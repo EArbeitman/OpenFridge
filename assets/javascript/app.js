@@ -2,17 +2,14 @@
 var ingredientsArray = [];
 var ingredient;
 var isSelected;
-
 var deleteButton;
 
 $(document).on('click', '.ingredientBtn', function () {
 
 	event.preventDefault();
-	//var ingredient = $(this).attr("data-ingredient");
 	ingredient = $(this).attr("value");
 	isSelected = $(this).attr("data-selected");
 
-	//check if ingredient is selected
 	
 	if (isSelected === "false") {
 		$(this).attr("data-selected", "true");
@@ -20,13 +17,7 @@ $(document).on('click', '.ingredientBtn', function () {
 		var myFridge;
 		var deleteButton;
 
-		// updates['/users/' + userId + '/fridge/'] = ingredientsArray;
-
-		// firebase.database().ref().update(updates);
-
 		myFridge = $("#myFridge");
-		// listItem = $("<h5>");
-		// listItem.text(item);
 		var x = ingredientsArray.indexOf(ingredient);
 		if (x === -1) {
 			ingredientsArray.push(ingredient);
@@ -44,50 +35,36 @@ $(document).on('click', '.ingredientBtn', function () {
     		console.log("remove");
     		fridgeList.remove(ingredient);
 		} 
-    } else {
+    } else 
 		console.log("error in the ingredient button function");
-	}
+	
 	
 });
 
-/* 
- * on child_Added listener event 
- * seems to be causing page to reload when item is deselected from list
+/*
+ * On click listener to remove items from the fridge list
+ * When an item is removed from fridge list, update firebase with running ingredients list
  */
-
-// fridgeList.on('child_added', function(snapshot){
-
-// 	deleteButton.attr('id', snapshot.key);
-
-// });
-
-
-// fridgeList.on('child_removed', snapshot =>{
-
-// 	/* do something */
-// });
-
-
 $(document).on("click", "button.delete", function() {
 	event.preventDefault();
-	//console.log($(this));
-	//console.log($(this).parent());
-	var myChange = $(this).attr("value");
-	$(this).remove();
-	var myTemp = document.querySelectorAll("div.title[value='"+ myChange +"']");
-	console.log(document.querySelectorAll("div.title[value='"+ myChange +"']"));
-	$(myTemp[0]).attr("data-selected", "false");
-    var x = ingredientsArray.indexOf(myChange)
-    ingredientsArray.splice(x,1);
 
+	var itemToRemove;
+	var itemIndex;
+	var myTemp;
+
+	itemToRemove = $(this).attr("value");
+	$(this).remove();
+	myTemp = document.querySelectorAll("div.title[value='"+ itemToRemove +"']");
+	$(myTemp[0]).attr("data-selected", "false");
+    itemIndex = ingredientsArray.indexOf(itemToRemove)
+    ingredientsArray.splice(itemIndex,1);
+
+    //Update database with ingredientsArray
     database.ref().child("users/"+userId).update({
 			fridge: ingredientsArray
 		});
-
-	//ingredientKey = $(this).attr('id');
 	
-	console.log(myChange);
-	//$(this).remove();
+
 });
 $(document).on("click", ".tSwitch", function() {
 	event.preventDefault();
