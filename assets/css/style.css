@@ -1,0 +1,247 @@
+body {
+	/* max-width: 900px; */
+/* 	display: flex;
+min-height: 100vh;	
+min-width: 100vw; */
+	/*box-sizing: border-box;*/
+	background: url("../images/grocery.jpeg");
+	background-position: center;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+	background-size: cover;
+	background-repeat: none;
+	background-attachment: fixed;
+	font-family: 'Permanent Marker', cursive;
+	letter-spacing: 0.5vw;
+}
+button.btn:focus {
+	margin: none;
+	border-color: none;
+}
+
+.setup {
+	display: block;
+}
+
+
+/*.myColumn {
+	width: 25%;
+}*/
+.panel-heading {
+	font-size: 2.5vw;
+	max-width: 95vw;
+	opacity: 0.9;
+}
+
+.searchResults, .masterSearch {
+	display: block;
+	background: #f3f2f1;
+	color: white;
+	opacity: 0.9;
+	border-radius: 10px;
+}
+.searchResults {
+	display: none;
+}
+.masterSearch {
+	display: block;
+}
+
+p {
+	background: #f3f2f1;
+    opacity: 0.8;
+    font-family: 'Permanent Marker', cursive;
+    letter-spacing: 0.3vw;
+    font-weight: 600;
+    font-size: 1.4vw;
+    border-radius: 10px;
+    line-height: 5vh;
+    
+}
+
+.post-content {
+    /*background: none;
+    /*opacity: 0.8;*/
+    margin: 0 auto;
+    text-align:center;
+    position: relative;
+    top: -8vw;
+   /* width:96%;   */
+}
+
+.youtube {
+    position: absolute;
+    top: 9px;
+    right: 10px;
+    width: 7vw;
+    border-radius: 10px;
+}
+
+h4 > a {
+	background: #486aab;
+	opacity: 0.95;
+	padding: 5px;
+	font-size: 2vw;
+}
+a:focus, a:hover {
+	text-decoration: none;
+}
+/* .thumbnail {
+    margin:0 auto;
+    text-align:center;
+} */
+
+.wrapper {
+    text-align:center;
+}
+/*div.thumbnail {
+	margin: 0.1vw auto;
+	max-height: 100vw;
+	max-width: 100vw;
+	background: none;
+	border: none;
+	overflow: hidden;
+	border-radius: 10px;
+}*/
+img {
+	/*margin: 0.1vw auto;
+	max-height: 100vw;
+	max-width: 100vw;
+	overflow: hidden;
+	opacity: 1.0;*/
+	border: none;
+	border-radius: 10px;
+	
+}
+.custom {
+	margin-bottom: 1vh;
+	font-family: 'Catamaran', sans-serif;
+	font-weight:  700;
+	
+}
+
+.fridgeList {
+	padding: 2vw;
+	opacity: 0.9;
+}
+.fridgePanel {
+	background: #f3f2f1;
+	opacity: 0.9;
+	border-radius: 10px;
+}
+
+.jumbotron {
+	background: #f3f2f1;
+	opacity: 0.9;
+	margin: 0;
+	max-width: 100%;
+	border-radius: 10px;
+	font-family: 'Skranji', cursive;
+	letter-spacing: 0.7vw;
+	line-height: 10vh;
+	font-size: 25vh;
+	padding: none;
+}
+.delete {
+	margin: 0.1vw;
+	width: 10.5vw;
+	font-family: 'Catamaran', sans-serif;
+	font-size: 1.3vw;
+	border: none;
+	display: table;
+
+}
+/*.tHead {
+	padding: 1vw;
+}
+*/
+h4.panel-title {
+	line-height: 4vh;
+}
+p.title {
+	font-family: 'Catamaran', sans-serif;
+	position: relative;
+	color: #193328;
+	font-size: 1.4vw;
+	letter-spacing: 0.1vw;
+	line-height: 2.0vw;
+	padding: 1vw;
+	left: 1.9vw;
+	width: 20vw;
+	text-align:center;
+    top: -8vw;
+}
+.ingredientBtn[data-selected="true"] {
+	background: #6da20f;
+	color: #193328;
+	font-family: 'Catamaran', sans-serif;
+	border-color: #f3f2f1;
+	border-width: 0.05vw
+	padding: .4vw;
+	font-size: 1.9vw;
+	letter-spacing: 0.1vw;
+	line-height: 2.9vh;
+	margin: 0vw;
+	height: 5vh;
+}
+.ingredientBtn[data-selected="false"] {
+	background: #486aab;
+	color: #193328;
+	font-family: 'Catamaran', sans-serif;
+	border-color: #f3f2f1;
+	border-width: 0.05vw;
+	padding: .4vw;
+	font-size: 1.9vw;
+	letter-spacing: 0.1vw;
+	line-height: 2.9vh;
+	margin: 0vw;
+	height: 5vh;
+}
+.tSwitch {
+	font-size: 1.4vw;
+	font-family: 'Catamaran', sans-serif;
+	letter-spacing: 0.1vw;
+	border-radius: 10px;
+	margin: 0.2vw;
+	opacity: 0.9;
+}
+#switch2 {
+	float: right;
+	font-size: 1.4vw;
+	font-family: 'Catamaran', sans-serif;
+	letter-spacing: 0.1vw;
+	border-radius: 10px;
+	margin: 0.2vw;
+	opacity: 0.9;
+}
+.modal-header {
+	font-family: 'Skranji', cursive;
+	letter-spacing: 0.2vw;
+	font-size: 20vw;
+}
+.modal-header, .modal-body, .modal-footer {
+	background: #f3f2f1;
+	border: none;
+	border-radius: 20px;
+}
+.modal-body {
+	font-family: 'Catamaran', sans-serif;
+	letter-spacing: 0.1vw;
+	font-size: 1.8vw;
+}
+/* needed for swiper coverflow*/
+.swiper-container {
+        width: 100%;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .swiper-slide {
+        background-position: center;
+        background-size: cover;
+        width: 300px;
+        height: 300px;
+        margin-right: 0.5vw;
+        margin-left: 0.5vw;
+    }

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  	<title>OpenFridge Recipe search</title>
+
+	<link rel="icon" href="assets/images/tomato.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  	
+
+  	<!--Firebase reference -->
+  	<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+
+  	
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:500|Permanent+Marker|Skranji:700" rel="stylesheet">
+	<script src="https://use.fontawesome.com/94d0e78a48.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
+  <div class="container">
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <div class="jumbotron text-center">
+          <h1><span class="fa fa-grocery-o"><img src="assets/images/refrigerator-icon.jpg"></span>  OpenFridge <br> Recipe Search</h1> 
+          <p>Open your fridge and tell us what you have. We will show you some delicious recipes you can make now.</p> 
+        </div>
+      </div>
+    </div>
+<!-- modal section for signin -->
+
+
+<!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title text-center" id="myModalLabel"><img src="assets/images/refrigerator-icon.jpg"> OPEN FRIDGE</h4>
+          </div>
+          <div class="modal-body">
+<!-- start signin section --><!-- start signin section -->
+            <div class="row setup"> 
+              <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                <div>
+                  <p class="text-center">Please sign in or create an account and signup.  This allows you to save your information for future use.<br>(Such as at the grocery store)</p>
+<!-- enter any initial descriptions to appear in modal here-->
+                </div>
+                <div class="input-group input-group-lg">
+                  <span class="input-group-addon glyphicon glyphicon-user" id="basic-addon1"></span>
+                  <input id="name" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="input-group input-group-lg">
+                  <span class="input-group-addon glyphicon glyphicon-envelope" id="basic-addon1"></span>
+                  <input id="email" type="email" class="form-control" placeholder="John.Smith@gmail.com" email="John.Smith@gmail.com" aria-describedby="basic-addon1">
+                </div>
+
+                <div class="input-group input-group-lg">
+                  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-key" aria-hidden="true"></i></span>
+                  <input id="password" type="password" class="form-control" placeholder="Password" password="#" aria-describedby="basic-addon1">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+    <!-- buttons for signin or signup-->
+            <button id="login" class="tSwitch btn btn-lg btn-warning login" data-dismiss="modal" type="submit">LOGIN</button>
+            <button id="signup" class="tSwitch btn btn-lg btn-warning login" data-dismiss="modal" type="submit">SIGNUP</button>
+            <button id="logout" class="tSwitch btn btn-lg btn-warning logout" data-dismiss="modal" type="submit">LOGOUT</button>
+            <button type="button" class="tSwitch btn-lg btn btn-danger" data-dismiss="modal">CLOSE</button>
+            <!-- this button came with bootstrap, not sure we need it -->
+            <!--button type="button" class="tSwitch btn btn-primary">Save changes</button-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    
+    
+<!--end signin section-->
+<!-- button to turn on/off search  and sign in section -->
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <button id="switch" type="button" class="tSwitch btn btn-lg btn-primary"> 
+        </button>
+        <button type="button" class="tSwitch btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+          SIGN IN - OUT
+        </button>
+        <button id="switch2" type="button" class="tSwitch btn btn-primary btn-lg"><span class="glyphicon glyphicon-search"></span>
+          SEARCH
+        </button>
+      </div>
+    </div>
+<!-- begin master Search section -->
+    <div class="row">
+      <div class="col-xs-9 col-sm-9 col-md-8 col-lg-8 panel panel-primary masterSearch">
+        <div class="panel-heading">
+          <span class="glyphicon glyphicon-search"></span> Select what you currently have in your fridge
+        </div>
+<!-- Custom list -->
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a class="tHead" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseZero" aria-expanded="true" aria-controls="collapseZero">
+                   - add your own ingredients...
+                </a>
+              </h4>
+            </div>
+            <div id="collapseZero" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingZero">
+              <div id="custom" class="panel-body">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group">
+                      <span class="input-group-btn">
+                        <button id="add" class="btn btn-default custom" type="button">Add</button>
+                      </span>
+                      <input type="text" class="form-control custom" placeholder="Ingredient to add...">
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+              </div>
+            </div>
+          </div>
+      
+
+<!-- Dairy list -->
+        <!-- <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"> -->
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a class="tHead" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                   Dairy
+                </a>
+              </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+              <div id="dairy" class="panel-body">
+                
+              </div>
+            </div>
+          </div>
+<!--Meat List-->
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+              <h4 class="panel-title">
+                <a class="collapsed tHead" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                   Meat
+                </a>
+              </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+              <div id="meat" class="panel-body">
+                
+              </div>
+            </div>
+          </div>
+<!-- Vegetable List -->
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingThree">
+              <h4 class="panel-title">
+                <a class="collapsed tHead" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                   Vegetables
+                </a>
+              </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+              <div id="vegetables" class="panel-body">
+                
+              </div>
+            </div>
+          </div>
+<!-- Fruit List -->
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingFour">
+              <h4 class="panel-title">
+                <a class="collapsed tHead" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                   Fruit
+                </a>
+              </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+              <div id="fruit" class="panel-body">
+                
+              </div>
+            </div>
+          </div>
+<!-- Spices -->
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingFive">
+              <h4 class="panel-title">
+                <a class="collapsed tHead" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                   Spices
+                </a>
+              </h4>
+            </div>
+            <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+              <div id="spices" class="panel-body">
+                
+              </div>
+            </div>
+          </div>
+<!-- Baking List -->
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingSix">
+              <h4 class="panel-title">
+                <a class="collapsed tHead" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                   Baking
+                </a>
+              </h4>
+            </div>
+            <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+              <div id="baking" class="panel-body">
+                
+              </div>
+            </div>
+          </div>
+<!-- Oil List -->
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingSeven">
+              <h4 class="panel-title">
+                <a class="collapsed tHead" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                   Oil
+                </a>
+              </h4>
+            </div>
+            <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+              <div id="oil" class="panel-body">
+                
+              </div>
+            </div>
+          </div>
+<!-- Seafood List -->
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingEight">
+              <h4 class="panel-title">
+                <a class="collapsed tHead" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                   Seafood
+                </a>
+              </h4>
+            </div>
+            <div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
+              <div id="seafood" class="panel-body">
+                
+              </div>
+            </div>
+          </div>
+<!-- Sweetner List -->
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingNine">
+              <h4 class="panel-title">
+                <a class="collapsed tHead" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                   Sweetner
+                </a>
+              </h4>
+            </div>
+            <div id="collapseNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNine">
+              <div id="sweetner" class="panel-body">
+                
+              </div>
+            </div>
+          </div>
+<!-- Nuts List -->
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTen">
+              <h4 class="panel-title">
+                <a class="collapsed tHead" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                   Nuts
+                </a>
+              </h4>
+            </div>
+            <div id="collapseTen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTen">
+              <div id="nuts" class="panel-body">
+                
+              </div>
+            </div>
+          </div>
+<!-- Condiments List -->
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingEleven">
+              <h4 class="panel-title">
+                <a class="collapsed tHead" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                   Condiments
+                </a>
+              </h4>
+            </div>
+            <div id="collapseEleven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEleven">
+              <div id="condiments" class="panel-body">
+                
+              </div>
+            </div>
+          </div>
+<!-- Dessert List -->
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwelve">
+              <h4 class="panel-title">
+                <a class="collapsed tHead" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+                   Dessert
+                </a>
+              </h4>
+            </div>
+            <div id="collapseTwelve" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwelve">
+              <div id="dessert" class="panel-body">
+                
+              </div>
+            </div>
+          </div>
+<!-- Beverage List -->
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingThirteen">
+              <h4 class="panel-title">
+                <a class="collapsed tHead" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen">
+                   Beverage
+                </a>
+              </h4>
+            </div>
+            <div id="collapseThirteen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThirteen">
+              <div id="beverage" class="panel-body">
+                
+              </div>
+            </div>
+          </div>
+<!-- Legumes List -->
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingFourteen">
+              <h4 class="panel-title">
+                <a class="collapsed tHead" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFourteen" aria-expanded="false" aria-controls="collapseFourteen">
+                   Legumes
+                </a>
+              </h4>
+            </div>
+            <div id="collapseFourteen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFourteen">
+              <div id="legumes" class="panel-body">
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- end Ingredients Section -->
+
+<!-- Search Results section -->
+
+      <div class="col-xs-9 col-sm-9 col-md-8 col-lg-8 panel panel-primary searchResults">
+        <div class="panel-heading">
+            <span class="fa fa-cutlery"></span>  Recipe Results
+        </div>
+        <form class="panel-body" >
+<!-- from swiper api -->
+          <div class="swiper-container">
+              <div class="swiper-wrapper">
+                  <div id="resultsList0" class="swiper-slide"></div>
+                  <div id="resultsList1" class="swiper-slide"></div>
+                  <div id="resultsList2" class="swiper-slide"></div>
+                  <div id="resultsList3" class="swiper-slide"></div>
+                  <div id="resultsList4" class="swiper-slide"></div>
+                  <div id="resultsList5" class="swiper-slide"></div>
+                  <div id="resultsList6" class="swiper-slide"></div>
+                  <div id="resultsList7" class="swiper-slide"></div>
+                  <div id="resultsList8" class="swiper-slide"></div>
+                  <div id="resultsList9" class="swiper-slide"></div>
+              </div>
+              <!-- Add Pagination -->
+              <div class="swiper-pagination"></div>
+<!-- end swiper api code-->
+          </div>
+        </form>
+      </div> <!-- end column -->
+    
+
+    <!-- Fridge List Panel -->
+
+      <div class="col-xs-3 col-sm-3 col-md-4 col-lg-4 panel panel-primary fridgePanel">
+      	<div class="panel-heading text-center fridgeList"></span>Fridge List</span>
+        </div>
+        <div class="row">
+          <form class="panel-body">
+            <div id="myFridge" class="text-center">
+            
+            </div>    
+          </form>
+        </div><!-- end of row myFridge-->
+      </div><!-- end of column for fridgePanel -->
+    </div> <!-- end row master search-->
+  </div> <!-- end div class container-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+
+<script type="text/javascript" src = "assets/javascript/search-results.js"></script>
+
+<script type="text/javascript" src = "assets/javascript/app.js"></script>
+
+<script type="text/javascript" src = "assets/javascript/authentication.js"></script>
+
+<script type="text/javascript" src = "assets/javascript/arrays.js"></script>
+
+<script type="text/javascript" src = "assets/javascript/youtube-api-query.js"></script>
+
+<script type="text/javascript" src = "assets/javascript/spoon-food-query.js"></script>
+</body>
+
+</html>
