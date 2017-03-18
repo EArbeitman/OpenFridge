@@ -108,6 +108,5 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 btnLogout.on("click", e =>{
 	console.log("logout now");
 	firebase.auth().signOut();
-	//window.location = 'login.html'
 
 });

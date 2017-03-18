@@ -33,21 +33,7 @@ var swiper = new Swiper('.swiper-container', {
             slideShadows : true
         }
     });
-//needed for swiper page slide
 
-//---------------------------------------------------------
-
-// var ingredientsArray = [];
-//var item = "";
-// $(document).on("click", ".ingredientBtn", function (){
-// 	item = $(this).attr("value");
-// 	//console.log(item);
-// 	if (ingredientsArray.indexOf(item) === -1) {
-// 		ingredientsArray.push(item);
-// 		//console.log(ingredientsArray);
-// 	}
-// });
-//---------------------------------------------------------
 var mySwitch = true;
 // show th modal on launch
 $('#myModal').modal('show');

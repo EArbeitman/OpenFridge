@@ -1,8 +1,3 @@
-// $(document).ready( function () {
-
-
-
-
 // API requirements
 const edamamEndPoint = "https://api.edamam.com/search?";
 const edamamAppId = "&app_id=1681d7cb";
@@ -28,21 +23,24 @@ var searchResultsUrls = [];
 
 // Creates a url from the search parameters
 function compileUrl(ingredientsArray, dietOptionsIndex, healthOptionsIndex ) {
+
+
+	var dietOptionsString;
+	var healthOptionsString;
+
 	var ingredientString = "q=";
 	for (i=0; i<ingredientsArray.length; i++){
 		ingredientString += (ingredientsArray[i] + "+");
 	};
-	
-	if (dietOptionsIndex === 0) {
-		var dietOptionsString = "";
-	} else {
-		var dietOptionsString = ("&diet=" + dietOptions[dietOptionsIndex]);
+
+	if(dietOptionsIndex || healthOptionsIndex === 0){
+		dietOptionsString = "";
+		healthOptionsString = "";
 	}
-	if (healthOptionsIndex === 0) {
-		var healthOptionsString = "";
-	} else {
-		var healthOptionsString = ("&health=" + healthOptions[healthOptionsIndex]);
-	}
+	else
+		dietOptionsString = ("&diet=" + dietOptions[dietOptionsIndex]);
+		healthOptionsString = ("&health=" + healthOptions[healthOptionsIndex]);
+
 	return edamamEndPoint + ingredientString + edamamAppId + edamamAppKey + dietOptionsString + healthOptionsString
 };
 
@@ -66,8 +64,3 @@ function edamamApiQuery(ingredientsArray, dietOptionsIndex, healthOptionsIndex){
 	});
 
 };
-
-
-
-
-// });
