@@ -95,13 +95,18 @@ $(document).on("click", ".youtube", function (){
 	window.open(youtubeLinkArray[index]);
 });
 
+
 $(document).on("click", "#add", function () {
-	var tempIngredient = $(this).val().trim();
-	console.log(tempIngredient);
-	if (myIngredientsArray.indexOf(tempIngredient) === -1) {
-		myIngredientsArray.push(tempIngredient);
+
+	event.preventDefault();
+	var tempIngredient = $("#custom1")[0];
+	var timIngredient = tempIngredient.value;
+	$("#custom1").val('');
+	console.log(" :" + timIngredient);
+	if (myIngredientsArray.indexOf(timIngredient) === -1) {
+		myIngredientsArray.push(timIngredient);
 		var temp =	$("#custom")
-		var ckbx = $('<div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 btn btn-primary ingredientBtn title" data-selected="false" value="' + tempIngredient + '">' + tempIngredient + '</div>');
+		var ckbx = $('<div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 btn btn-primary ingredientBtn title" data-selected="false" value="' + timIngredient + '">' + timIngredient + '</div>');
 		temp.append(ckbx);
 	}
 });
