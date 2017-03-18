@@ -1,5 +1,10 @@
 # OpenFridge
-Working repository for class project. 
+
+/** Overview **/
+
+Provide an on demand web application that allows users to manage their food stock.
+Seamlessly search for recipes based on ingredients you have saved in your Open Fridge instance. 
+
 
 /** Branching Strategy **/
 Step 1 -  Clone the new repo to your computer:
@@ -49,4 +54,7 @@ Resources:
 
 GIT Tutorial: https://www.atlassian.com/git/tutorials
 Slick Framework: http://kenwheeler.github.io/slick/
-Firebase hosting: https://firebase.google.com/docs/hosting/
+Heroku Link: https://nameless-cove-98922.herokuapp.com/
+
+
+
