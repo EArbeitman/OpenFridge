@@ -10,12 +10,12 @@ var seafoodArray = ["shrimp", "crawfish", "crab", "scallop", "prawns", "clam", "
 var sweetnerArray = ["sugar", "honey", "confectionary sugar", "maple sugar", "syrup", "molasses", "corn syrup"];
 var nutsArray = ["peanut butter", "chestnut", "almond", "cashew", "walnut", "peanut", "pecan", "flax", "pine nut", "pistachio", "almond meal", "praline", "hazelnut", "macadamia", "almond paste", "macaroon"];
 var condimentsArray = ["mayonnaise", "mustard", "ketchup", "vinegar", "balsamic vinegar", "wine vinegar", "cider vinegar", "rice vinegar", "apple cider vinegar", "fish sauce", "blue cheese dressing",];
-var desertArray = ["chocolate", "apple sauce", "graham cracker", "marshmallow", "potato chips", "pudding mix", "chocolate morsels", "bittersweet chocolate", "cookie dough", "chocolate syrup", "nutella"];
+var dessertArray = ["chocolate", "apple sauce", "graham cracker", "marshmallow", "potato chips", "pudding mix", "chocolate morsels", "bittersweet chocolate", "cookie dough", "chocolate syrup", "nutella"];
 var beverageArray = ["apple juice", "coffee", "orange juice", "tea", "espresso", "tomato juice", "green tea", "cranberry juice", "coke", "lemonade", "ginger ale", "pineapple juice", "fruit juice", "club soda", "sprite", "grenadine", "margarita mix"];
 var legumesArray = ["peas", "black beans", "chickpea", "lentil", "hummus", "soybeans", "pinto beans", "cannellini beans", "navy beans", "kidney beans", "lima beans", "green beans", "french beans"];
 var myIngredientsArray = [];
-var masterList = [dairyArray, meatArray, vegetablesArray, fruitArray, spicesArray, fishArray, bakingArray, oilArray, seafoodArray, sweetnerArray, nutsArray, condimentsArray, desertArray, beverageArray, legumesArray];
-var categoryList = ["#dairy", "#meat", "#vegetables", "#fruit", "#spices", "#fish", "#baking", "#oil", "#seafood", "#sweetner", "#nuts", "#condiments", "#desert", "#beverage", "#legumes"];
+var masterList = [dairyArray, meatArray, vegetablesArray, fruitArray, spicesArray, fishArray, bakingArray, oilArray, seafoodArray, sweetnerArray, nutsArray, condimentsArray, dessertArray, beverageArray, legumesArray];
+var categoryList = ["#dairy", "#meat", "#vegetables", "#fruit", "#spices", "#fish", "#baking", "#oil", "#seafood", "#sweetner", "#nuts", "#condiments", "#dessert", "#beverage", "#legumes"];
 //---------------------------------------------------------
 // swifer js from api
 //needed for swiper coverflow
