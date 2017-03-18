@@ -41,25 +41,29 @@ $(document).on('click', '.ingredientBtn', function () {
 	
 });
 
-
+/*
+ * On click listener to remove items from the fridge list
+ * When an item is removed from fridge list, update firebase with running ingredients list
+ */
 $(document).on("click", "button.delete", function() {
 	event.preventDefault();
-	//console.log($(this));
-	//console.log($(this).parent());
-	var myChange = $(this).attr("value");
+
+	var itemToRemove;
+	var itemIndex;
+	var myTemp;
+
+	itemToRemove = $(this).attr("value");
 	$(this).remove();
-	var myTemp = document.querySelectorAll("div.title[value='"+ myChange +"']");
-	console.log(document.querySelectorAll("div.title[value='"+ myChange +"']"));
+	myTemp = document.querySelectorAll("div.title[value='"+ itemToRemove +"']");
 	$(myTemp[0]).attr("data-selected", "false");
-    var x = ingredientsArray.indexOf(myChange)
-    ingredientsArray.splice(x,1);
+    itemIndex = ingredientsArray.indexOf(itemToRemove)
+    ingredientsArray.splice(itemIndex,1);
 
     //Update database with ingredientsArray
     database.ref().child("users/"+userId).update({
 			fridge: ingredientsArray
 		});
 	
-	console.log(myChange);
 
 });
 $(document).on("click", ".tSwitch", function() {
