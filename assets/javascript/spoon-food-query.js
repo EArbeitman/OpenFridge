@@ -17,13 +17,18 @@ var youtubeVideoIdArray = ["","","","","","","","","",""];
 var youtubeLinkArray = ["","","","","","","","","",""];
 var youtubeEmbedArray = ["","","","","","","","","",""];
 
-// Other Info returned 
+//  Variables for the number of used and missed ingredients.
 var usedIngredientCount = [];
 var missedIngredientCount = [];
 
-// The master array for all the info for each missing ingredient
+// The master array for all the info for each missing ingredient for each recipe.
 //	the order is -> usedIngredients["First recipe"]["First ingredient"]["first ingredient name"]
 // 			  or -> usedIngredients[0][0][0]
+// The info collected for each ingredient is:
+// index 0 -> name
+// index 1 -> aisle
+// index 2 -> amount 
+// index 3 -> image (as a link)
 var usedIngredients = [];
 var missedIngredients = [];
 
