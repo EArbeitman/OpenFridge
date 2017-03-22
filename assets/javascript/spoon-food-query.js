@@ -17,9 +17,20 @@ var youtubeVideoIdArray = ["","","","","","","","","",""];
 var youtubeLinkArray = ["","","","","","","","","",""];
 var youtubeEmbedArray = ["","","","","","","","","",""];
 
+// Other Info returned 
+var usedIngredientCount = [];
+var missedIngredientCount = [];
+
+// The master array for all the info for each missing ingredient
+//	the order is -> usedIngredients["First recipe"]["First ingredient"]["first ingredient name"]
+// 			  or -> usedIngredients[0][0][0]
+var usedIngredients = [];
+var missedIngredients = [];
+
+
 // The endpoint and key for the spoonacular API
-const mashapeKey = "bxXFwnl1pJmshzspDDYGy3lvzL6sp1mO26njsn6pzoWcDjvhGD"
-const spoonFoodEndPoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients="
+const mashapeKey = "bxXFwnl1pJmshzspDDYGy3lvzL6sp1mO26njsn6pzoWcDjvhGD";
+const spoonFoodEndPoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=true&ingredients=";
 const spoonFoodOptions = "&limitLicense=false&number=100&ranking=2";
 
 //==========================================================================================
@@ -68,15 +79,79 @@ function recipeSearch() {
 
 		// Get a random number from 0 - 90
 		var randomNumber = Math.floor(Math.random() * 90);
+		console.log(randomNumber);
 
 		// Grab the first 10 results and add their id, title, and image urls to the variable arrays for them
 		for (i=0; i<10; i++) {
+
+			// Grab the info
 			var recipeId = response[i + randomNumber].id;
 			var recipeTitle = response[i +randomNumber].title;
 			var recipeImage = response[i + randomNumber].image;
+			var recipeNumOfUsedIngredients = response[i + randomNumber].usedIngredientCount;
+			var recipeNumOfMissingIngredients = response[i + randomNumber].missedIngredientCount;
+
+			// Master ingredient info arrays
+			var usedIngredientsInfoArray = [];
+			var missedIngredientsInfoArray = [];
+			
+			// Store the info
 			searchResultsUrls.push("https://spoonacular.com/recipes/-" + recipeId);
 			searchResultsLabels.push(recipeTitle);
 			searchResultsImages.push(recipeImage);
+			usedIngredientCount.push(recipeNumOfUsedIngredients);
+			missedIngredientCount.push(recipeNumOfMissingIngredients);
+
+			// Grab and store the info for each ingredient used
+			for (j=0; j<response[i + randomNumber].usedIngredients.length; j++) {
+
+				// array for temp storage
+				var usedIngredientsDataArray = [];
+
+				// Variables for the data
+				var name = response[i + randomNumber].usedIngredients[j].name;
+				var aisle = response[i + randomNumber].usedIngredients[j].aisle;
+				var amount = response[i + randomNumber].usedIngredients[j].amount;
+				var image = response[i + randomNumber].usedIngredients[j].image;
+
+				// Store the info
+				usedIngredientsDataArray.push(name);
+				usedIngredientsDataArray.push(aisle);
+				usedIngredientsDataArray.push(amount);
+				usedIngredientsDataArray.push(image);
+
+				// Push to the info array
+				usedIngredientsInfoArray.push(usedIngredientsDataArray);
+				// console.log("used ingredients data array ",usedIngredientsDataArray);
+				// console.log("used ingredients info array ",usedIngredientsInfoArray);
+			}
+
+			// Grab and store the info for each ingredient missed
+			for (j=0; j<response[i + randomNumber].missedIngredients.length; j++) {
+
+				// array for temp storage
+				var missedIngredientsDataArray = [];
+
+				// Variables for the data
+				var name = response[i + randomNumber].missedIngredients[j].name;
+				var aisle = response[i + randomNumber].missedIngredients[j].aisle;
+				var amount = response[i + randomNumber].missedIngredients[j].amount;
+				var image = response[i + randomNumber].missedIngredients[j].image;
+
+				// Store the info
+				missedIngredientsDataArray.push(name);
+				missedIngredientsDataArray.push(aisle);
+				missedIngredientsDataArray.push(amount);
+				missedIngredientsDataArray.push(image);
+
+				// Push to the info array
+				missedIngredientsInfoArray.push(missedIngredientsDataArray);
+			}
+
+			// Push to the master arrays for used and missing ingredients
+			usedIngredients.push(usedIngredientsInfoArray); 
+			missedIngredients.push(missedIngredientsInfoArray);
+
 			
 			// Start the youtube query while passing the index to avoid the call times from changing the order
 			youtubeApiQuery(recipeTitle, i);
