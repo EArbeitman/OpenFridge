@@ -54,7 +54,7 @@ p {
     font-family: 'Permanent Marker', cursive;
     letter-spacing: 0.3vw;
     font-weight: 600;
-    font-size: 1.4vw;
+    font-size: 1.5vw;
     border-radius: 10px;
     line-height: 5vh;
     
@@ -132,7 +132,8 @@ img {
 	padding: 0px;
 }
 .panel-body {
-	padding: 10px;
+	padding: 2vw;
+	box-sizing: border-box;
 }
 .jumbotron {
 	background: #f3f2f1;
@@ -155,10 +156,6 @@ img {
 	display: table;
 
 }
-/*.tHead {
-	padding: 1vw;
-}
-*/
 h4.panel-title {
 	line-height: 4vh;
 }
@@ -234,6 +231,29 @@ p.title {
 	font-size: 1.8vw;
 }
 @media screen and (max-width: 499px) {
+	.panel-heading {
+		font-size: 3.9vw;
+	}
+	.tHead {
+		font-size: 5.0vw;
+	}
+	#switch2 {
+		font-size: 2.8vw;
+		margin: 0.2vw;
+	}
+	.delete {
+		margin: 0.2vw;
+		width: 23vw;
+		font-size: 2.1vw;
+		display: block;
+
+	}
+	.tSwitch {
+		font-size: 2.8vw;
+	}
+	p {
+		font-size: 4.7vw;
+	}
 	.ingredientBtn[data-selected="false"] {
 		font-size: 3.9vw;
 	}
@@ -247,88 +267,37 @@ p.title {
 	padding: 0.1vw;
 }
 }
-@media screen and (max-width: 901px) and (min-width: 500px) {
+@media screen and (max-width: 900px) and (min-width: 500px) {
+	.tSwitch {
+		font-size: 1.4vw;
+	}
+	p {
+		font-size: 3.4vw;
+	}
 	.ingredientBtn[data-selected="false"] {
-		background: #486aab;
-		color: #193328;
-		font-family: 'Catamaran', sans-serif;
-		border-color: #f3f2f1;
-		border-width: 0.05vw;
-		padding: .4vw;
 		font-size: 3.1vw;
-		letter-spacing: 0.1vw;
-		line-height: 2.9vh;
-		margin: 0vw;
-		height: 5vh;
 	}
 	.ingredientBtn[data-selected="true"] {
-		background: #6da20f;
-		color: #193328;
-		font-family: 'Catamaran', sans-serif;
-		border-color: #f3f2f1;
-		border-width: 0.05vw
-		padding: .4vw;
 		font-size: 3.1vw;
-		letter-spacing: 0.1vw;
-		line-height: 2.9vh;
-		margin: 0vw;
-		height: 5vh;
 	}
 }
-@media screen and (max-width: 1400px) and (min-width: 1200px) {
+@media screen and (max-width: 1400px) and (min-width: 901px) {
+	p {
+		font-size: 2.6vw;
+	}
 	.ingredientBtn[data-selected="false"] {
-		background: #486aab;
-		color: #193328;
-		font-family: 'Catamaran', sans-serif;
-		border-color: #f3f2f1;
-		border-width: 0.05vw;
-		padding: .4vw;
 		font-size: 1.5vw;
-		letter-spacing: 0.1vw;
-		line-height: 2.9vh;
-		margin: 0vw;
-		height: 5vh;
 	}
 	.ingredientBtn[data-selected="true"] {
-		background: #6da20f;
-		color: #193328;
-		font-family: 'Catamaran', sans-serif;
-		border-color: #f3f2f1;
-		border-width: 0.05vw
-		padding: .4vw;
 		font-size: 1.5vw;
-		letter-spacing: 0.1vw;
-		line-height: 2.9vh;
-		margin: 0vw;
-		height: 5vh;
 	}
 }
 @media screen and (min-width: 1401px) {
 	.ingredientBtn[data-selected="false"] {
-		background: #486aab;
-		color: #193328;
-		font-family: 'Catamaran', sans-serif;
-		border-color: #f3f2f1;
-		border-width: 0.05vw;
-		padding: .4vw;
 		font-size: 1.3vw;
-		letter-spacing: 0.1vw;
-		line-height: 2.9vh;
-		margin: 0vw;
-		height: 5vh;
 	}
 	.ingredientBtn[data-selected="true"] {
-		background: #6da20f;
-		color: #193328;
-		font-family: 'Catamaran', sans-serif;
-		border-color: #f3f2f1;
-		border-width: 0.05vw
-		padding: .4vw;
 		font-size: 1.3vw;
-		letter-spacing: 0.1vw;
-		line-height: 2.9vh;
-		margin: 0vw;
-		height: 5vh;
 	}
 }
 /* needed for swiper coverflow*/
