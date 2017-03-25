@@ -244,9 +244,8 @@ p.title {
 	.delete {
 		margin: 0.2vw;
 		width: 23vw;
-		font-size: 2.1vw;
+		font-size: 2.5vw;
 		display: block;
-
 	}
 	.tSwitch {
 		font-size: 2.8vw;
@@ -260,14 +259,17 @@ p.title {
 	.ingredientBtn[data-selected="true"] {
 		font-size: 3.9vw;
 	}
-	.delete {
-	font-size: 3.9vw;
-	}
 	.panel-body {
 	padding: 0.1vw;
 }
 }
 @media screen and (max-width: 900px) and (min-width: 500px) {
+	.delete {
+		margin: 0.2vw;
+		width: 19vw;
+		font-size: 2.5vw;
+		display: block;
+	}
 	.tSwitch {
 		font-size: 1.4vw;
 	}
