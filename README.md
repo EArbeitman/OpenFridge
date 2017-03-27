@@ -54,7 +54,7 @@ Resources:
 
 GIT Tutorial: https://www.atlassian.com/git/tutorials
 Slick Framework: http://kenwheeler.github.io/slick/
-Heroku Link: https://nameless-cove-98922.herokuapp.com/
+Heroku Link: https://open-fridge.herokuapp.com/
 
 
 
